@@ -136,6 +136,7 @@ input:invalid {
   padding: 5px;
   margin-top: 10px;
   margin-bottom: 5px;
+  font-size:medium;
 }
 
 .copy-full-bttn {
