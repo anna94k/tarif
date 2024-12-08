@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+  <meta charset="UTF-8">
+  <title>საზღაურები</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+
+<body>
+
+   <div>დღევანდელი თარიღი: <b><span id="date1"></span></b></div><br>
+   <input type="date" class="date-input">
+   <span id="date2"></span></b></div>
+
+   <div id="main-content"> 
+      
+
+      <!-- ხელმოწერის ნამდვილობის დამოწმება -->
+
+      <div class="parts">
+         
+         <h3>ხელმოწერის ნამდვილობის დამოწმება</h3>
+         <form id="signatureForm">
+            <table class="input-table">
+               <tr> 
+                  <td><label for="pageNum">რამდენ გვერდიანია დოკუმენტი: </label><br></td>
+                  <td><input type="number" min="1" id="pageNum" name="pageNum" placeholder="1" value="1"><br>
+                  </td>
+               </tr>
+               <tr>
+                  <td><label for="ppl">რამდენი პირი აწერს ხელს: </label><br>
+                  </td>
+                  <td><input type="number" min="1" id="ppl" name="ppl" placeholder="1" value="1"><br>
+                  </td>
+               </tr>
+               <tr>
+                  <td><label for="copies">რამდენი ეგზემპლარია: </label><br>
+                  </td>
+                  <td><input type="number" min="1" id="copies" name="copies" placeholder="1" value="1"><br>
+                  </td>
+               </tr>
+               <tr>
+                  <td><label for="projectAmount">პროექტისთვის: </label>
+                     <input type="radio" id="project0" class="radio-input" name="project" checked>
+                     <label for="project0">არა,</label>
+                     <input type="radio" id="project10" class="radio-input" name="project">
+                     <label for="project10">10₾ ,</label>
+                     <input type="radio" id="projectOther" class="radio-input" name="project">
+                     <label for="projectOther">სხვა:</label>
+                  </td>
+                  <td><input type="number" min="0" id="projectAmount" name="projectAmount" placeholder="0" disabled="disabled">
+                  </td>
+               </tr>
+               <tr>
+                  <td class="vat-label"><label for="vatSelector">დღგ:</label>
+                  </td>
+                  <td><input type="checkbox" class="checkbox" id="vatSelector" name="vatSelector" checked>
+                  </td>
+               </tr>
+            </table>
+         </form>
+         
+         <div class="bttns">
+            <div><button class="submit-bttn" id="submit">დაანგარიშება</button></div>   
+            <div class="reset-bttn" id="reset">&#8634;</div>
+         </div><br>
+
+         <!-- შედეგები -->
+         <table class="result-table">
+            <tr id="signFullPrice"></tr>
+            <tr id="signaturesPrice"></tr>
+            <tr id="forProject"></tr>
+            <tr id="signVAT"></tr>
+         </table>
+
+         <div id="fullText"></div>
+
+
+      </div>
+
+
+
+
+      <!-- ასლის დამოწმება -->
+
+      <div class="parts">
+         <h3>ასლის დამოწმება</h3>
+         <form id="copiesForm">
+            <table class="input-table">
+               <tr> 
+                  <td><label for="pageNum">რამდენ გვერდიანია დოკუმენტი: </label><br></td>
+                  <td><input type="number" min="1" id="pageNumCopy" name="pageNum" value="1"><br>
+                  </td>
+               </tr>
+               <tr>
+                  <td><label for="copies">რამდენი ეგზემპლარია: </label><br>
+                  </td>
+                  <td><input type="number" min="1" id="copiesCopy" name="copies" value="1"><br>
+                  </td>
+               </tr>
+               <tr>
+                  <td><label for="copyPrice">1გვ ასლის დამზადებისთვის (თეთრი): </label>
+                     <input type="radio" id="copy0" class="radio-input" name="copyPrice" checked>
+                     <label for="copy0">არა,</label>
+                     <input type="radio" id="copyYes" class="radio-input" name="copyPrice">
+                     <label for="copyYes">კი -</label>
+                  </td>
+                  <td><input type="number" min="0" id="forCopying" name="copyPrice" placeholder="0" disabled="disabled">
+                  </td>
+               </tr>
+               <tr>
+                  <td class="vat-label"><label for="vatSelectorC">დღგ:</label>
+                  </td>
+                  <td><input type="checkbox" class="checkbox" id="copyVatSelector" name="vatSelectorC" checked>
+                  </td>
+               </tr>
+            </table>
+         </form>
+         
+         <div class="bttns">
+            <div><button class="submit-bttn" id="submit-copies">დაანგარიშება</button></div>   
+            <div class="reset-bttn" id="reset-copies">&#8634;</div>
+         </div><br>
+
+         <table class="result-table">
+            <tr>
+               <td>სულ:</td>
+               <td>
+                  <div class="text-and-copy">
+                     <span id="copyFullPrice"></span><img id="copy-full-copies" class="copy-icon" src="copy1.png" title="Copy">
+                  </div>
+            </td>
+            </tr>
+            <tr>
+               <td>საზღაური:</td>
+               <td>
+                  <div class="text-and-copy">
+                     <span id="copiesPrice"></span><img id="copy-notary-copies" class="copy-icon" src="copy1.png" title="Copy">
+                  </div>
+               </td>
+
+            </tr>
+            <tr>
+               <td>ასლისთვის:</td>
+               <td >
+                  <div class="text-and-copy">
+                     <span id="forCopyingResult"></span><img id="copy-for-copying" class="copy-icon" src="copy1.png" title="Copy">
+                  </div>
+               </td>
+            </tr>
+            <tr>
+               <td>დღგ:</td>
+               <td>
+                  <div class="text-and-copy">
+                     <span id="copiesVAT"></span><img id="copy-VAT-copies" class="copy-icon" src="copy1.png" title="Copy">
+                  </div>
+               </td>
+            </tr>
+         </table>
+
+         <div class = "fullText">
+            <span id="copiesFullText"></span>
+            <div class="copy-full-bttn">
+               <button id="copyFullTextCopies">კოპირება</button>
+            </div>
+         </div>
+         
+
+      </div>
+
+      
+      <!-- ხელშეკრულებების ღირებულება 
+
+      <div class="parts">
+         <h3>ხელშეკრულებები</h3>
+         <form id="signatureForm">
+            <table class="input-table">
+               <tr> 
+                  <td><label for="pageNum">გარიგების ღირებულება: </label><br></td>
+                  <td><input type="number" min="1" id="pageNum" name="pageNum" placeholder="1"><br>
+                  </td>
+               </tr>
+            </table>
+         </form>
+         
+         <div class="bttns">
+            <div><button id="submit">დაანგარიშება</button></div>   
+            <div id="reset">&#8634;</div>
+         </div><br>
+
+         <table class="result-table">
+            <tr>
+               <td>სულ:</td>
+               <td>
+                  <div class="text-and-copy">
+                     <span id="signFullPrice"></span><img onclick="copyFullPrice()" class="copy-icon" src="copy1.png" title="Copy">
+                  </div>
+            </td>
+            </tr>
+            <tr>
+               <td>საზღაური:</td>
+               <td>
+                  <div class="text-and-copy">
+                     <span id="signaturesPrice"></span><img onclick="copyNotaryPrice()" class="copy-icon" src="copy1.png" title="Copy">
+                  </div>
+               </td>
+
+            </tr>
+            <tr>
+               <td>დღგ:</td>
+               <td>
+                  <div class="text-and-copy">
+                     <span id="signVAT"></span><img onclick="copyVatPrice()" class="copy-icon" src="copy1.png" title="Copy">
+                  </div>
+               </td>
+            </tr>
+         </table>
+      </div>
+
+      
+       სამკვიდრო მოწმობა 
+
+      <div class="parts">
+         <h3>სამკვიდრო მოწმობა</h3>
+         <form id="signatureForm">
+            <table class="input-table">
+               <tr> 
+                  <td><label for="pageNum">სამკვიდროს ღირებულება: </label><br></td>
+                  <td><input type="number" min="1" id="pageNum" name="pageNum" placeholder="1"><br>
+                  </td>
+               </tr>
+            </table>
+         </form>
+         
+         <div class="bttns">
+            <div><button id="submit">დაანგარიშება</button></div>   
+            <div id="reset">&#8634;</div>
+         </div><br>
+
+         <table class="result-table">
+            <tr>
+               <td>სულ:</td>
+               <td>
+                  <div class="text-and-copy">
+                     <span id="signFullPrice"></span><img onclick="copyFullPrice()" class="copy-icon" src="copy1.png" title="Copy">
+                  </div>
+            </td>
+            </tr>
+            <tr>
+               <td>საზღაური:</td>
+               <td>
+                  <div class="text-and-copy">
+                     <span id="signaturesPrice"></span><img onclick="copyNotaryPrice()" class="copy-icon" src="copy1.png" title="Copy">
+                  </div>
+               </td>
+
+            </tr>
+            <tr>
+               <td>დღგ:</td>
+               <td>
+                  <div class="text-and-copy">
+                     <span id="signVAT"></span><img onclick="copyVatPrice()" class="copy-icon" src="copy1.png" title="Copy">
+                  </div>
+               </td>
+            </tr>
+         </table>
+      </div>
+
+      -->
+
+
+   </div>
+
+
+  <script type="module" src="script.js"></script>
+  <script type="module" src="utils/date.js"></script>
+</body>
+
+</html>

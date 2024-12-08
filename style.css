@@ -1,0 +1,150 @@
+#main-content {
+  margin: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.parts {
+  border: 1px solid rgb(218, 218, 218);
+  padding: 20px;
+  border-radius: 4px;
+  box-shadow: 0 0 7px rgb(218, 218, 218);
+  margin: 15px;
+}
+
+h3 {
+  margin-top: 0;
+}
+
+.input-table {
+  border-collapse: collapse;
+  border: 1px solid #dddddd;
+  margin-bottom: 20px;
+}
+
+.input-table td {
+  padding: 8px;
+}
+
+.input-table tr:nth-child(odd) {
+  background-color: #dddddd;
+}
+
+input:not(.checkbox, .radio-input) {
+  height: 25px;
+  width: 70px;
+  margin-left: 10px;
+}
+
+.checkbox {
+  height: 23px;
+  width: 23px;
+  margin-left: 10px;
+}
+
+.vat-label {
+  text-align:end;
+}
+
+input:invalid {
+  border: 2px solid red;
+  border-radius: 3px;
+}
+
+.date-input {
+  width: 110px;
+}
+
+.submit-bttn {
+  cursor: pointer;
+  padding: 8px;
+}
+
+.reset-bttn {
+  cursor: pointer;
+  margin-left: 20px;
+  font-size: 33px;
+  color: #5a5a5a;
+  text-align: center;
+  vertical-align: middle;
+  padding-bottom: 5px;
+  transition: color 0.15s;
+}
+
+.reset-bttn:hover {
+  color: #262626;
+}
+
+.reset-bttn:active {
+  color:rgb(136, 136, 136);
+}
+
+.bttns {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.result-table {
+  border-collapse: collapse;
+  max-width: 471px;
+
+}
+
+.result-table td:nth-child(1) {
+  background-color: #464646;
+  color: white;
+  border-collapse: collapse;
+} 
+
+.result-table td {
+  padding: 5px;
+  border: 1px solid gray;
+  border-collapse: collapse;
+}
+
+.results {
+  display: flex;
+}
+
+.copy-icon {
+  height: 20px;
+  cursor: pointer;
+  margin-left: 12px;
+  opacity: 0.7;
+}
+
+.copy-icon:hover {
+  opacity: 1;
+}
+
+.copy-icon:active {
+  opacity: 0.4;
+}
+
+.text-and-copy {
+  display: flex;
+  justify-content: space-between;
+}
+
+.fullText {
+  max-width: 460px;
+  text-align: justify;
+  border-style: solid;
+  border-width: 1px;
+  padding: 5px;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+.copy-full-bttn {
+  display: flex;
+  justify-content: center;
+}
+
+#copyFullText {
+  cursor: pointer;
+}
+
+
