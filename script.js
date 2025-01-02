@@ -288,7 +288,7 @@ function forCopying() {
     let pageNum = Number(document.getElementById("pageNumCopy").value); 
     pageNum = Math.round(pageNum);
 
-    let copies = Number(document.getElementById("copies").value);
+    let copies = Number(document.getElementById("copiesCopy").value);
     copies = Math.round(copies);
 
     if (forCopying < 0) {
