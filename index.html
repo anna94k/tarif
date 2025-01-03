@@ -123,6 +123,8 @@
             <div class="reset-bttn" id="reset-copies">&#8634;</div>
          </div><br>
 
+         <!-- შედეგები - ასლის -->
+         
          <table class="result-table">
             <tr>
                <td>სულ:</td>
@@ -170,104 +172,84 @@
       </div>
 
       
-      <!-- ხელშეკრულებების ღირებულება 
+      <!-- ხელშეკრულებების ღირებულება -->
 
       <div class="parts">
-         <h3>ხელშეკრულებები</h3>
-         <form id="signatureForm">
+         
+         <h3>გარიგებების დამოწმება &#40;23-ე მუხლი&#41;</h3>
+         <form id="agreementsForm">
             <table class="input-table">
                <tr> 
-                  <td><label for="pageNum">გარიგების ღირებულება: </label><br></td>
-                  <td><input type="number" min="1" id="pageNum" name="pageNum" placeholder="1"><br>
+                  <td><label for="agreements-amount">გარიგების ღირებულება:</label><br></td>
+                  <td><input type="number" min="0" id="agreementsAmount" name="agreements-amount" placeholder="0" value="1"> ₾<br>
+                  </td>
+               </tr>
+               
+               <tr>
+                  <td class="vat-label"><label for="vatSelectorAgreements">დღგ:</label>
+                  </td>
+                  <td><input type="checkbox" class="checkbox" id="vatSelectorAgreements" name="vatSelectorAgreements" checked>
                   </td>
                </tr>
             </table>
          </form>
          
          <div class="bttns">
-            <div><button id="submit">დაანგარიშება</button></div>   
-            <div id="reset">&#8634;</div>
+            <div><button class="submit-bttn" id="submit-agreements">დაანგარიშება</button></div>   
+            <div class="reset-bttn" id="reset-agreements">&#8634;</div>
          </div><br>
 
+         <!-- შედეგები - გარიგებების -->
          <table class="result-table">
-            <tr>
-               <td>სულ:</td>
-               <td>
-                  <div class="text-and-copy">
-                     <span id="signFullPrice"></span><img onclick="copyFullPrice()" class="copy-icon" src="copy1.png" title="Copy">
-                  </div>
-            </td>
-            </tr>
-            <tr>
-               <td>საზღაური:</td>
-               <td>
-                  <div class="text-and-copy">
-                     <span id="signaturesPrice"></span><img onclick="copyNotaryPrice()" class="copy-icon" src="copy1.png" title="Copy">
-                  </div>
-               </td>
-
-            </tr>
-            <tr>
-               <td>დღგ:</td>
-               <td>
-                  <div class="text-and-copy">
-                     <span id="signVAT"></span><img onclick="copyVatPrice()" class="copy-icon" src="copy1.png" title="Copy">
-                  </div>
-               </td>
-            </tr>
+            <tr id="agreementsFullPrice"></tr>
+            <tr id="agreementsPrice"></tr>
+            <tr id="agreementsVAT"></tr>
          </table>
+
+         <div id="fullTextAgreements"></div>
+
+
       </div>
 
       
-       სამკვიდრო მოწმობა 
+      <!-- სამკვიდროს ღირებულება -->
 
       <div class="parts">
-         <h3>სამკვიდრო მოწმობა</h3>
-         <form id="signatureForm">
+         
+         <h3>სამკვიდრო მოწმობის გაცემა</h3>
+         <form id="inheritanceForm">
             <table class="input-table">
                <tr> 
-                  <td><label for="pageNum">სამკვიდროს ღირებულება: </label><br></td>
-                  <td><input type="number" min="1" id="pageNum" name="pageNum" placeholder="1"><br>
+                  <td><label for="inheritance-amount">სამკვიდროს ღირებულება:</label><br></td>
+                  <td><input type="number" min="0" id="inheritanceAmount" name="inheritance-amount" placeholder="0" value="1"> ₾<br>
+                  </td>
+               </tr>
+               
+               <tr>
+                  <td class="vat-label"><label for="vatSelectorInheritance">დღგ:</label>
+                  </td>
+                  <td><input type="checkbox" class="checkbox" id="vatSelectorInheritance" name="vatSelectorInheritance" checked>
                   </td>
                </tr>
             </table>
          </form>
          
          <div class="bttns">
-            <div><button id="submit">დაანგარიშება</button></div>   
-            <div id="reset">&#8634;</div>
+            <div><button class="submit-bttn" id="submit-inheritance">დაანგარიშება</button></div>   
+            <div class="reset-bttn" id="reset-inheritance">&#8634;</div>
          </div><br>
 
+         <!-- შედეგები - სამკვიდროს -->
          <table class="result-table">
-            <tr>
-               <td>სულ:</td>
-               <td>
-                  <div class="text-and-copy">
-                     <span id="signFullPrice"></span><img onclick="copyFullPrice()" class="copy-icon" src="copy1.png" title="Copy">
-                  </div>
-            </td>
-            </tr>
-            <tr>
-               <td>საზღაური:</td>
-               <td>
-                  <div class="text-and-copy">
-                     <span id="signaturesPrice"></span><img onclick="copyNotaryPrice()" class="copy-icon" src="copy1.png" title="Copy">
-                  </div>
-               </td>
-
-            </tr>
-            <tr>
-               <td>დღგ:</td>
-               <td>
-                  <div class="text-and-copy">
-                     <span id="signVAT"></span><img onclick="copyVatPrice()" class="copy-icon" src="copy1.png" title="Copy">
-                  </div>
-               </td>
-            </tr>
+            <tr id="inheritanceFullPrice"></tr>
+            <tr id="inheritancePrice"></tr>
+            <tr id="inheritanceVAT"></tr>
          </table>
-      </div>
 
-      -->
+         <div id="fullTextInheritance"></div>
+
+
+      </div>
 
 
    </div>

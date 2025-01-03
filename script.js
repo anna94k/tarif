@@ -50,7 +50,7 @@ function forProject() {
 }
 
 function priceVAT() {
-  const vatPrice = Math.round(((signatures() + forProject())) * 18) / 100;
+  const vatPrice = Math.round((signatures() + forProject()) * 18) / 100;
   let checkBox = document.getElementById("vatSelector");
 
   if (checkBox.checked == true) {return vatPrice;} else {return 0}
@@ -129,17 +129,17 @@ function renderFullText() {
   const fullTextArea = document.getElementById('fullText');
   let fullText = "";
   if (priceVAT() > 0 && forProject() === 10) {
-    fullText = `გადახდილია სანოტარო მომსახურების საზღაური სულ: <b> ${fullPrice()} (${integersToWords(fullPrice())}${decimalsToWords(fullPrice())} ლარი,</b> მათ შორის: ${signatures()} (${integersToWords(signatures())}) ლარი - საქართველოს მთავრობის 2011 წლის 29 დეკემბერის №507 დადგენილების (სანოტარო მოქმედებათა შესრულებისათვის საზღაურისა და საქართველოს ნოტარიუსთა პალატისთვის დადგენილი საფასურის ოდენობების, მათი გადახდევინების წესისა და მომსახურების ვადების დამტკიცების შესახებ) 31.3 მუხლისა, ${forProject()} (${integersToWords(forProject())}${decimalsToWords(forProject())} ლარი - განცხადების პროექტის შედგენისათვის, თანახმად ამავე დადგენილების 31.13 მუხლისა, 5 (ხუთი) ლარი - ელექტრონულ სანოტარო რეესტრში სანოტარო მოქმედების რეგისტრაციის საფასური, თანახმად ზემოხსენებული დადგენილების 39-ე მუხლისა და დღგ - ${priceVAT()} (${integersToWords(priceVAT())}${decimalsToWords(priceVAT())} ლარი, თანახმად საქართველოს საგადასახადო კოდექსის 166-ე მუხლისა.`
+    fullText = `გადახდილია სანოტარო მომსახურების საზღაური სულ: <b> ${fullPrice()} (${integersToWords(fullPrice())}${decimalsToWords(fullPrice())} ლარი,</b> მათ შორის: ${signatures()} (${integersToWords(signatures())}) ლარი, თანახმად საქართველოს მთავრობის 2011 წლის 29 დეკემბერის №507 დადგენილების (სანოტარო მოქმედებათა შესრულებისათვის საზღაურისა და საქართველოს ნოტარიუსთა პალატისთვის დადგენილი საფასურის ოდენობების, მათი გადახდევინების წესისა და მომსახურების ვადების დამტკიცების შესახებ) 31.3 მუხლისა, ${forProject()} (${integersToWords(forProject())}${decimalsToWords(forProject())} ლარი - განცხადების პროექტის შედგენისათვის, თანახმად ამავე დადგენილების 31.13 მუხლისა, 5 (ხუთი) ლარი - ელექტრონულ სანოტარო რეესტრში სანოტარო მოქმედების რეგისტრაციის საფასური, თანახმად ზემოხსენებული დადგენილების 39-ე მუხლისა და დღგ - ${priceVAT()} (${integersToWords(priceVAT())}${decimalsToWords(priceVAT())} ლარი, თანახმად საქართველოს საგადასახადო კოდექსის 166-ე მუხლისა.`
   } else if (priceVAT() > 0 && forProject() > 0) {
-    fullText = `გადახდილია სანოტარო მომსახურების საზღაური სულ:<b> ${fullPrice()} (${integersToWords(fullPrice())}${decimalsToWords(fullPrice())} ლარი,</b> მათ შორის: ${signatures()} (${integersToWords(signatures())}) ლარი - საქართველოს მთავრობის 2011 წლის 29 დეკემბერის №507 დადგენილების (სანოტარო მოქმედებათა შესრულებისათვის საზღაურისა და საქართველოს ნოტარიუსთა პალატისთვის დადგენილი საფასურის ოდენობების, მათი გადახდევინების წესისა და მომსახურების ვადების დამტკიცების შესახებ) 31.3 მუხლისა, ${forProject()} (${integersToWords(forProject())}${decimalsToWords(forProject())} ლარი - გარიგების პროექტის შედგენისათვის, თანახმად ამავე დადგენილების 30-ე მუხლისა, 5 (ხუთი) ლარი - ელექტრონულ სანოტარო რეესტრში სანოტარო მოქმედების რეგისტრაციის საფასური, თანახმად ზემოხსენებული დადგენილების 39-ე მუხლისა და დღგ - ${priceVAT()} (${integersToWords(priceVAT())}${decimalsToWords(priceVAT())} ლარი, თანახმად საქართველოს საგადასახადო კოდექსის 166-ე მუხლისა.`
+    fullText = `გადახდილია სანოტარო მომსახურების საზღაური სულ:<b> ${fullPrice()} (${integersToWords(fullPrice())}${decimalsToWords(fullPrice())} ლარი,</b> მათ შორის: ${signatures()} (${integersToWords(signatures())}) ლარი, თანახმად საქართველოს მთავრობის 2011 წლის 29 დეკემბერის №507 დადგენილების (სანოტარო მოქმედებათა შესრულებისათვის საზღაურისა და საქართველოს ნოტარიუსთა პალატისთვის დადგენილი საფასურის ოდენობების, მათი გადახდევინების წესისა და მომსახურების ვადების დამტკიცების შესახებ) 31.3 მუხლისა, ${forProject()} (${integersToWords(forProject())}${decimalsToWords(forProject())} ლარი - გარიგების პროექტის შედგენისათვის, თანახმად ამავე დადგენილების 30-ე მუხლისა, 5 (ხუთი) ლარი - ელექტრონულ სანოტარო რეესტრში სანოტარო მოქმედების რეგისტრაციის საფასური, თანახმად ზემოხსენებული დადგენილების 39-ე მუხლისა და დღგ - ${priceVAT()} (${integersToWords(priceVAT())}${decimalsToWords(priceVAT())} ლარი, თანახმად საქართველოს საგადასახადო კოდექსის 166-ე მუხლისა.`
   } else if (priceVAT() > 0 && forProject() === 0) {
-    fullText = `გადახდილია სანოტარო მომსახურების საზღაური სულ:<b> ${fullPrice()} (${integersToWords(fullPrice())}${decimalsToWords(fullPrice())} ლარი,</b> მათ შორის: ${signatures()} (${integersToWords(signatures())}) ლარი - საქართველოს მთავრობის 2011 წლის 29 დეკემბერის №507 დადგენილების (სანოტარო მოქმედებათა შესრულებისათვის საზღაურისა და საქართველოს ნოტარიუსთა პალატისთვის დადგენილი საფასურის ოდენობების, მათი გადახდევინების წესისა და მომსახურების ვადების დამტკიცების შესახებ) 31.3 მუხლისა, 5 (ხუთი) ლარი - ელექტრონულ სანოტარო რეესტრში სანოტარო მოქმედების რეგისტრაციის საფასური, თანახმად ზემოხსენებული დადგენილების 39-ე მუხლისა და დღგ - ${priceVAT()} (${integersToWords(priceVAT())}${decimalsToWords(priceVAT())} ლარი, თანახმად საქართველოს საგადასახადო კოდექსის 166-ე მუხლისა.`
+    fullText = `გადახდილია სანოტარო მომსახურების საზღაური სულ:<b> ${fullPrice()} (${integersToWords(fullPrice())}${decimalsToWords(fullPrice())} ლარი,</b> მათ შორის: ${signatures()} (${integersToWords(signatures())}) ლარი, თანახმად საქართველოს მთავრობის 2011 წლის 29 დეკემბერის №507 დადგენილების (სანოტარო მოქმედებათა შესრულებისათვის საზღაურისა და საქართველოს ნოტარიუსთა პალატისთვის დადგენილი საფასურის ოდენობების, მათი გადახდევინების წესისა და მომსახურების ვადების დამტკიცების შესახებ) 31.3 მუხლისა, 5 (ხუთი) ლარი - ელექტრონულ სანოტარო რეესტრში სანოტარო მოქმედების რეგისტრაციის საფასური, თანახმად ზემოხსენებული დადგენილების 39-ე მუხლისა და დღგ - ${priceVAT()} (${integersToWords(priceVAT())}${decimalsToWords(priceVAT())} ლარი, თანახმად საქართველოს საგადასახადო კოდექსის 166-ე მუხლისა.`
   } else if (priceVAT() === 0 && forProject() === 10) {
-    fullText = `გადახდილია სანოტარო მომსახურების საზღაური სულ:<b> ${fullPrice()} (${integersToWords(fullPrice())}${decimalsToWords(fullPrice())} ლარი,</b> მათ შორის: ${signatures()} (${integersToWords(signatures())}) ლარი - საქართველოს მთავრობის 2011 წლის 29 დეკემბერის №507 დადგენილების (სანოტარო მოქმედებათა შესრულებისათვის საზღაურისა და საქართველოს ნოტარიუსთა პალატისთვის დადგენილი საფასურის ოდენობების, მათი გადახდევინების წესისა და მომსახურების ვადების დამტკიცების შესახებ) 31.3 მუხლისა, ${forProject()} (${integersToWords(forProject())}${decimalsToWords(forProject())} ლარი - განცხადების პროექტის შედგენისათვის, თანახმად ამავე დადგენილების 31.13 მუხლისა და 5 (ხუთი) ლარი - ელექტრონულ სანოტარო რეესტრში სანოტარო მოქმედების რეგისტრაციის საფასური, თანახმად ზემოხსენებული დადგენილების 39-ე მუხლისა.`
+    fullText = `გადახდილია სანოტარო მომსახურების საზღაური სულ:<b> ${fullPrice()} (${integersToWords(fullPrice())}${decimalsToWords(fullPrice())} ლარი,</b> მათ შორის: ${signatures()} (${integersToWords(signatures())}) ლარი, თანახმად საქართველოს მთავრობის 2011 წლის 29 დეკემბერის №507 დადგენილების (სანოტარო მოქმედებათა შესრულებისათვის საზღაურისა და საქართველოს ნოტარიუსთა პალატისთვის დადგენილი საფასურის ოდენობების, მათი გადახდევინების წესისა და მომსახურების ვადების დამტკიცების შესახებ) 31.3 მუხლისა, ${forProject()} (${integersToWords(forProject())}${decimalsToWords(forProject())} ლარი - განცხადების პროექტის შედგენისათვის, თანახმად ამავე დადგენილების 31.13 მუხლისა და 5 (ხუთი) ლარი - ელექტრონულ სანოტარო რეესტრში სანოტარო მოქმედების რეგისტრაციის საფასური, თანახმად ზემოხსენებული დადგენილების 39-ე მუხლისა.`
   } else if (priceVAT() === 0 && forProject() > 0) {
-    fullText = `გადახდილია სანოტარო მომსახურების საზღაური სულ:<b> ${fullPrice()} (${integersToWords(fullPrice())}${decimalsToWords(fullPrice())} ლარი,</b> მათ შორის: ${signatures()} (${integersToWords(signatures())}) ლარი - საქართველოს მთავრობის 2011 წლის 29 დეკემბერის №507 დადგენილების (სანოტარო მოქმედებათა შესრულებისათვის საზღაურისა და საქართველოს ნოტარიუსთა პალატისთვის დადგენილი საფასურის ოდენობების, მათი გადახდევინების წესისა და მომსახურების ვადების დამტკიცების შესახებ) 31.3 მუხლისა, ${forProject()} (${integersToWords(forProject())}${decimalsToWords(forProject())} ლარი - გარიგების პროექტის შედგენისათვის, თანახმად ამავე დადგენილების 30-ე მუხლისა და 5 (ხუთი) ლარი - ელექტრონულ სანოტარო რეესტრში სანოტარო მოქმედების რეგისტრაციის საფასური, თანახმად ზემოხსენებული დადგენილების 39-ე მუხლისა.`
+    fullText = `გადახდილია სანოტარო მომსახურების საზღაური სულ:<b> ${fullPrice()} (${integersToWords(fullPrice())}${decimalsToWords(fullPrice())} ლარი,</b> მათ შორის: ${signatures()} (${integersToWords(signatures())}) ლარი, თანახმად საქართველოს მთავრობის 2011 წლის 29 დეკემბერის №507 დადგენილების (სანოტარო მოქმედებათა შესრულებისათვის საზღაურისა და საქართველოს ნოტარიუსთა პალატისთვის დადგენილი საფასურის ოდენობების, მათი გადახდევინების წესისა და მომსახურების ვადების დამტკიცების შესახებ) 31.3 მუხლისა, ${forProject()} (${integersToWords(forProject())}${decimalsToWords(forProject())} ლარი - გარიგების პროექტის შედგენისათვის, თანახმად ამავე დადგენილების 30-ე მუხლისა და 5 (ხუთი) ლარი - ელექტრონულ სანოტარო რეესტრში სანოტარო მოქმედების რეგისტრაციის საფასური, თანახმად ზემოხსენებული დადგენილების 39-ე მუხლისა.`
   } else if (priceVAT() === 0 && forProject() === 0) {
-    fullText = `გადახდილია სანოტარო მომსახურების საზღაური სულ:<b> ${fullPrice()} (${integersToWords(fullPrice())}${decimalsToWords(fullPrice())} ლარი,</b> მათ შორის: ${signatures()} (${integersToWords(signatures())}) ლარი - საქართველოს მთავრობის 2011 წლის 29 დეკემბერის №507 დადგენილების (სანოტარო მოქმედებათა შესრულებისათვის საზღაურისა და საქართველოს ნოტარიუსთა პალატისთვის დადგენილი საფასურის ოდენობების, მათი გადახდევინების წესისა და მომსახურების ვადების დამტკიცების შესახებ) 31.3 მუხლისა და 5 (ხუთი) ლარი - ელექტრონულ სანოტარო რეესტრში სანოტარო მოქმედების რეგისტრაციის საფასური, თანახმად ზემოხსენებული დადგენილების 39-ე მუხლისა.`
+    fullText = `გადახდილია სანოტარო მომსახურების საზღაური სულ:<b> ${fullPrice()} (${integersToWords(fullPrice())}${decimalsToWords(fullPrice())} ლარი,</b> მათ შორის: ${signatures()} (${integersToWords(signatures())}) ლარი, თანახმად საქართველოს მთავრობის 2011 წლის 29 დეკემბერის №507 დადგენილების (სანოტარო მოქმედებათა შესრულებისათვის საზღაურისა და საქართველოს ნოტარიუსთა პალატისთვის დადგენილი საფასურის ოდენობების, მათი გადახდევინების წესისა და მომსახურების ვადების დამტკიცების შესახებ) 31.3 მუხლისა და 5 (ხუთი) ლარი - ელექტრონულ სანოტარო რეესტრში სანოტარო მოქმედების რეგისტრაციის საფასური, თანახმად ზემოხსენებული დადგენილების 39-ე მუხლისა.`
   }  
   
   fullTextArea.innerHTML = 
@@ -336,11 +336,11 @@ function mySubmitCopies() {
 function renderFullTextCopies() {
   const fullTextArea = document.getElementById('copiesFullText');
   if (copiesVAT() > 0 && forCopying() > 0) {
-    fullTextArea.innerHTML = `სანოტარო მოქმედების შესრულებისათვის გადახდილ იქნა საზღაური სულ: <b> ${copiesFullPrice()} (${integersToWords(copiesFullPrice())}${decimalsToWords(copiesFullPrice())} ლარი,</b> მათ შორის: ${copies()} (${integersToWords(copies())}) ლარი – თანახმად "სანოტარო მოქმედებათა შესრულეებისათვის საზღაურისა და საქართველოს ნოტარიუსთა პალატისთვის დადგენილი საფასურის ოდენობების, მათი გადახდევინების წესისა და მომსახურების ვადების დამტკიცების შესახებ" საქართველოს მთავრობის 2011 წლის 29 დეკემბრის #507 დადგენილების 31-ე მუხლისა, ${forCopying()} (${integersToWords(forCopying())}${decimalsToWords(forCopying())} ლარი თანახმად ამავე დადგენილების 35-ე მუხლისა და დღგ ${copiesVAT()} (${integersToWords(copiesVAT())}${decimalsToWords(copiesVAT())} ლარი თანახმად საქართველოს საგადასახადო კოდექსის 166-ე მუხლისა.`
+    fullTextArea.innerHTML = `სანოტარო მოქმედების შესრულებისათვის გადახდილ იქნა საზღაური სულ: <b> ${copiesFullPrice()} (${integersToWords(copiesFullPrice())}${decimalsToWords(copiesFullPrice())} ლარი,</b> მათ შორის: ${copies()} (${integersToWords(copies())}) ლარი – თანახმად "სანოტარო მოქმედებათა შესრულეებისათვის საზღაურისა და საქართველოს ნოტარიუსთა პალატისთვის დადგენილი საფასურის ოდენობების, მათი გადახდევინების წესისა და მომსახურების ვადების დამტკიცების შესახებ" საქართველოს მთავრობის 2011 წლის 29 დეკემბრის #507 დადგენილების 31-ე მუხლისა, ${forCopying()} (${integersToWords(forCopying())}${decimalsToWords(forCopying())} ლარი, თანახმად ამავე დადგენილების 35-ე მუხლისა და დღგ ${copiesVAT()} (${integersToWords(copiesVAT())}${decimalsToWords(copiesVAT())} ლარი, თანახმად საქართველოს საგადასახადო კოდექსის 166-ე მუხლისა.`
   } else if (copiesVAT() > 0 && forCopying() === 0) {
-    fullTextArea.innerHTML = `სანოტარო მოქმედების შესრულებისათვის გადახდილ იქნა საზღაური სულ: <b> ${copiesFullPrice()} (${integersToWords(copiesFullPrice())}${decimalsToWords(copiesFullPrice())} ლარი,</b> მათ შორის: ${copies()} (${integersToWords(copies())}) ლარი – თანახმად "სანოტარო მოქმედებათა შესრულეებისათვის საზღაურისა და საქართველოს ნოტარიუსთა პალატისთვის დადგენილი საფასურის ოდენობების, მათი გადახდევინების წესისა და მომსახურების ვადების დამტკიცების შესახებ" საქართველოს მთავრობის 2011 წლის 29 დეკემბრის #507 დადგენილების 31-ე მუხლისა და დღგ ${copiesVAT()} (${integersToWords(copiesVAT())}${decimalsToWords(copiesVAT())} ლარი თანახმად საქართველოს საგადასახადო კოდექსის 166-ე მუხლისა.`
+    fullTextArea.innerHTML = `სანოტარო მოქმედების შესრულებისათვის გადახდილ იქნა საზღაური სულ: <b> ${copiesFullPrice()} (${integersToWords(copiesFullPrice())}${decimalsToWords(copiesFullPrice())} ლარი,</b> მათ შორის: ${copies()} (${integersToWords(copies())}) ლარი – თანახმად "სანოტარო მოქმედებათა შესრულეებისათვის საზღაურისა და საქართველოს ნოტარიუსთა პალატისთვის დადგენილი საფასურის ოდენობების, მათი გადახდევინების წესისა და მომსახურების ვადების დამტკიცების შესახებ" საქართველოს მთავრობის 2011 წლის 29 დეკემბრის #507 დადგენილების 31-ე მუხლისა და დღგ ${copiesVAT()} (${integersToWords(copiesVAT())}${decimalsToWords(copiesVAT())} ლარი, თანახმად საქართველოს საგადასახადო კოდექსის 166-ე მუხლისა.`
   } else if (copiesVAT() === 0 && forCopying() > 0) {
-    fullTextArea.innerHTML = `სანოტარო მოქმედების შესრულებისათვის გადახდილ იქნა საზღაური სულ: <b> ${copiesFullPrice()} (${integersToWords(copiesFullPrice())}${decimalsToWords(copiesFullPrice())} ლარი,</b> მათ შორის: ${copies()} (${integersToWords(copies())}) ლარი – თანახმად "სანოტარო მოქმედებათა შესრულეებისათვის საზღაურისა და საქართველოს ნოტარიუსთა პალატისთვის დადგენილი საფასურის ოდენობების, მათი გადახდევინების წესისა და მომსახურების ვადების დამტკიცების შესახებ" საქართველოს მთავრობის 2011 წლის 29 დეკემბრის #507 დადგენილების 31-ე მუხლისა და ${forCopying()} (${integersToWords(forCopying())}${decimalsToWords(forCopying())} ლარი თანახმად ამავე დადგენილების 35-ე მუხლისა.`
+    fullTextArea.innerHTML = `სანოტარო მოქმედების შესრულებისათვის გადახდილ იქნა საზღაური სულ: <b> ${copiesFullPrice()} (${integersToWords(copiesFullPrice())}${decimalsToWords(copiesFullPrice())} ლარი,</b> მათ შორის: ${copies()} (${integersToWords(copies())}) ლარი – თანახმად "სანოტარო მოქმედებათა შესრულეებისათვის საზღაურისა და საქართველოს ნოტარიუსთა პალატისთვის დადგენილი საფასურის ოდენობების, მათი გადახდევინების წესისა და მომსახურების ვადების დამტკიცების შესახებ" საქართველოს მთავრობის 2011 წლის 29 დეკემბრის #507 დადგენილების 31-ე მუხლისა და ${forCopying()} (${integersToWords(forCopying())}${decimalsToWords(forCopying())} ლარი, თანახმად ამავე დადგენილების 35-ე მუხლისა.`
   } else if (copiesVAT() === 0 && forCopying() === 0) {
     fullTextArea.innerHTML = `სანოტარო მოქმედების შესრულებისათვის გადახდილ იქნა საზღაური - <b> ${copies()} (${integersToWords(copies())}) ლარი,</b> თანახმად "სანოტარო მოქმედებათა შესრულეებისათვის საზღაურისა და საქართველოს ნოტარიუსთა პალატისთვის დადგენილი საფასურის ოდენობების, მათი გადახდევინების წესისა და მომსახურების ვადების დამტკიცების შესახებ" საქართველოს მთავრობის 2011 წლის 29 დეკემბრის #507 დადგენილების 31-ე მუხლისა.`
   }  
@@ -394,3 +394,335 @@ function resetCopies() {
   document.getElementById('forCopying').setAttribute('disabled', 'disabled');
 }
 
+
+// -----Calculation-----ხელშეკრულებები------
+
+function agreements() {
+  let amount = Number(document.getElementById("agreementsAmount").value); 
+  amount = Math.round(amount * 100) / 100;
+
+  if (amount < 0) amount = 0;
+ 
+  let notaryPrice;
+
+  if (amount <= 500) {
+    notaryPrice = (amount * 3)/100;
+  } else if (amount <= 1000) {
+    notaryPrice = ((amount - 500) * 25)/1000 + 15;
+  } else if (amount <= 2000) {
+    notaryPrice = ((amount - 1000) * 15)/1000 + (275/10);
+  } else if (amount <= 3000) {
+    notaryPrice = ((amount - 2000) * 1)/100 + (425/10);
+  } else if (amount <= 5000) {
+    notaryPrice = ((amount - 3000) * 5)/1000 + (525/10);
+  } else if (amount <= 20000) {
+    notaryPrice = ((amount - 5000) * 4)/1000 + (625/10);
+  } else if (amount <= 100000) {
+    notaryPrice = ((amount - 20000) * 3)/1000 + (1225/10);
+  } else if (amount <= 500000) {
+    notaryPrice = ((amount - 100000) * 2)/1000 + (3625/10);
+  } else if (amount <= 1000000) {
+    notaryPrice = ((amount - 500000) * 1)/1000 + (11625/10);
+  } else {
+    notaryPrice = ((amount - 1000000) * 5)/10000 + (16625/10);
+  }
+
+  notaryPrice = Math.round(notaryPrice * 100) / 100;
+
+  return notaryPrice;
+}
+ 
+
+
+function agreementsVAT() {
+  const vatPrice = Math.round(agreements() * 18) / 100;
+  let checkBox = document.getElementById("vatSelectorAgreements");
+
+  if (checkBox.checked == true) {return vatPrice;} else {return 0}
+}
+
+function fullPriceAgr() {
+  let x = (agreementsVAT()*100 + agreements()*100)/100 + 5;
+
+  return x;
+}
+
+
+
+// -------------------------
+
+
+function mySubmitAgr() {
+  const notaryPrice = document.getElementById('agreementsPrice');
+  const vatPrice = document.getElementById('agreementsVAT');
+  const finalPrice = document.getElementById('agreementsFullPrice');  
+
+  notaryPrice.innerHTML = 
+    `<td>საზღაური:</td>
+    <td>
+      <div class="text-and-copy">
+        <span id="notary-price-agreements">
+          ${agreements()} (${integersToWords(agreements())}${decimalsToWords(agreements())} ლარი
+        </span>
+        <img id="copyAgreementsBttn" class="copy-icon" src="copy1.png" title="Copy">
+      </div>
+    </td>`;
+  
+  if (agreementsVAT() > 0) {vatPrice.innerHTML = 
+    `<td>დღგ:</td>
+    <td>
+      <div class="text-and-copy">
+        <span id="VAT-agreements">
+          ${agreementsVAT()} (${integersToWords(agreementsVAT())}${decimalsToWords(agreementsVAT())} ლარი
+        </span>
+        <img id="copyAgreementsVatBttn" class="copy-icon" src="copy1.png" title="Copy">
+      </div>
+    </td>`
+  } else document.getElementById("agreementsVAT").innerHTML = "";
+  
+  finalPrice.innerHTML = 
+    `<td>სულ:</td>
+    <td>
+      <div class="text-and-copy" >
+        <span id="full-price-agreements">
+          ${fullPriceAgr()} (${integersToWords(fullPriceAgr())}${decimalsToWords(fullPriceAgr())} ლარი
+        </span> 
+        <img id="copyAgreementsFullBttn" class="copy-icon" src="copy1.png" title="Copy">
+      </div>
+    </td>`
+  ; 
+
+
+  renderFullTextAgr();
+}
+
+
+function renderFullTextAgr() {
+  const fullTextArea = document.getElementById('fullTextAgreements');
+  let fullText = "";
+  if (agreementsVAT() > 0 ) {
+    fullText = `გადახდილია სანოტარო მომსახურების საზღაური სულ: <b> ${fullPriceAgr()} (${integersToWords(fullPriceAgr())}${decimalsToWords(fullPriceAgr())} ლარი,</b> მათ შორის: ${agreements()} (${integersToWords(agreements())}${decimalsToWords(agreements())} ლარი, თანახმად საქართველოს მთავრობის 2011 წლის 29 დეკემბერის №507 დადგენილების (სანოტარო მოქმედებათა შესრულებისათვის საზღაურისა და საქართველოს ნოტარიუსთა პალატისთვის დადგენილი საფასურის ოდენობების, მათი გადახდევინების წესისა და მომსახურების ვადების დამტკიცების შესახებ) 23-ე მუხლისა, 5 (ხუთი) ლარი - ელექტრონულ სანოტარო რეესტრში სანოტარო მოქმედების რეგისტრაციის საფასური, თანახმად ზემოხსენებული დადგენილების 39-ე მუხლისა და დღგ - ${agreementsVAT()} (${integersToWords(agreementsVAT())}${decimalsToWords(agreementsVAT())} ლარი, თანახმად საქართველოს საგადასახადო კოდექსის 166-ე მუხლისა.`
+  } else {
+    fullText = `გადახდილია სანოტარო მომსახურების საზღაური სულ:<b> ${fullPriceAgr()} (${integersToWords(fullPriceAgr())}${decimalsToWords(fullPriceAgr())} ლარი,</b> მათ შორის: ${agreements()} (${integersToWords(agreements())}${decimalsToWords(agreements())} ლარი, თანახმად საქართველოს მთავრობის 2011 წლის 29 დეკემბერის №507 დადგენილების (სანოტარო მოქმედებათა შესრულებისათვის საზღაურისა და საქართველოს ნოტარიუსთა პალატისთვის დადგენილი საფასურის ოდენობების, მათი გადახდევინების წესისა და მომსახურების ვადების დამტკიცების შესახებ) 23-ე მუხლისა და 5 (ხუთი) ლარი - ელექტრონულ სანოტარო რეესტრში სანოტარო მოქმედების რეგისტრაციის საფასური, თანახმად ზემოხსენებული დადგენილების 39-ე მუხლისა.`
+  }  
+  
+  fullTextArea.innerHTML = 
+    `<div class = "fullText">
+      <span id="copy-full-txt-agreements">${fullText}</span>
+      <div class="copy-full-bttn">
+        <button id="copyFullTextAgreements">კოპირება</button>
+      </div>
+    </div>`;
+
+    eventListenersforCopyingAgr();
+}
+
+
+function setupEventListenersAgr() {
+  const submitBttn = document.getElementById('submit-agreements');
+  const resetBttn = document.getElementById('reset-agreements');
+  
+  //submitBttn.removeEventListener('click', mySubmitAgr);
+  submitBttn.addEventListener('click', mySubmitAgr);
+  submitBttn.addEventListener('click', renderFullTextAgr);
+  resetBttn.addEventListener('click', resetAgr);
+
+
+
+}
+
+setupEventListenersAgr();
+
+
+
+function eventListenersforCopyingAgr() {
+  const copyAgreementsFullBttn = document.getElementById('copyAgreementsFullBttn');
+  const copyAgreementsBttn = document.getElementById('copyAgreementsBttn');
+  const copyAgreementsVatBttn = document.getElementById('copyAgreementsVatBttn');
+  const copyFullTextAgreements = document.getElementById('copyFullTextAgreements');
+
+  copyAgreementsFullBttn.addEventListener('click', () => {copyContent(document.getElementById('full-price-agreements').innerText)});
+  copyAgreementsBttn.addEventListener('click', () => {copyContent(document.getElementById('notary-price-agreements').innerText)}); 
+  copyAgreementsVatBttn?.addEventListener('click', () => {copyContent(document.getElementById('VAT-agreements').innerText)});
+  copyFullTextAgreements.addEventListener('click', () => {copyRich(document.getElementById('copy-full-txt-agreements'))});
+
+}
+
+
+
+function resetAgr() {
+  document.getElementById("agreementsForm").reset();
+  document.getElementById("agreementsPrice").innerHTML = "";
+  document.getElementById("agreementsVAT").innerHTML = "";
+  document.getElementById('agreementsFullPrice').innerHTML = "";
+  document.getElementById('fullTextAgreements').innerHTML = "";
+}
+
+
+
+
+// -----Calculation-----სამკვიდრო------
+
+function inheritance() {
+  let amount = Number(document.getElementById("inheritanceAmount").value); 
+  amount = Math.round(amount * 100) / 100;
+
+  if (amount < 0) amount = 0;
+ 
+  let notaryPrice;
+
+  if (amount <= 500) {
+    notaryPrice = (amount * 3)/100;
+  } else if (amount <= 1000) {
+    notaryPrice = ((amount - 500) * 25)/1000 + 15;
+  } else if (amount <= 2000) {
+    notaryPrice = ((amount - 1000) * 15)/1000 + (275/10);
+  } else if (amount <= 3000) {
+    notaryPrice = ((amount - 2000) * 1)/100 + (425/10);
+  } else if (amount <= 5000) {
+    notaryPrice = ((amount - 3000) * 5)/1000 + (525/10);
+  } else if (amount <= 20000) {
+    notaryPrice = ((amount - 5000) * 4)/1000 + (625/10);
+  } else if (amount <= 100000) {
+    notaryPrice = ((amount - 20000) * 3)/1000 + (1225/10);
+  } else if (amount <= 500000) {
+    notaryPrice = ((amount - 100000) * 2)/1000 + (3625/10);
+  } else if (amount <= 1000000) {
+    notaryPrice = ((amount - 500000) * 1)/1000 + (11625/10);
+  } else {
+    notaryPrice = ((amount - 1000000) * 5)/10000 + (16625/10);
+  }
+
+  notaryPrice /= 2;
+  notaryPrice = Math.round(notaryPrice * 100) / 100;
+
+
+  return notaryPrice;
+}
+ 
+
+
+function inheritanceVAT() {
+  const vatPrice = Math.round(inheritance() * 18) / 100;
+  let checkBox = document.getElementById("vatSelectorInheritance");
+
+  if (checkBox.checked == true) {return vatPrice;} else {return 0}
+}
+
+function fullPriceInh() {
+  let x = (inheritanceVAT()*100 + inheritance()*100)/100 + 5;
+
+  return x;
+}
+
+
+
+// -------------------------
+
+
+function mySubmitInh() {
+  const notaryPrice = document.getElementById('inheritancePrice');
+  const vatPrice = document.getElementById('inheritanceVAT');
+  const finalPrice = document.getElementById('inheritanceFullPrice');  
+
+  notaryPrice.innerHTML = 
+    `<td>საზღაური:</td>
+    <td>
+      <div class="text-and-copy">
+        <span id="notary-price-inheritance">
+          ${inheritance()} (${integersToWords(inheritance())}${decimalsToWords(inheritance())} ლარი
+        </span>
+        <img id="copyInheritanceBttn" class="copy-icon" src="copy1.png" title="Copy">
+      </div>
+    </td>`;
+  
+  if (inheritanceVAT() > 0) {vatPrice.innerHTML = 
+    `<td>დღგ:</td>
+    <td>
+      <div class="text-and-copy">
+        <span id="VAT-inheritance">
+          ${inheritanceVAT()} (${integersToWords(inheritanceVAT())}${decimalsToWords(inheritanceVAT())} ლარი
+        </span>
+        <img id="copyInheritanceVatBttn" class="copy-icon" src="copy1.png" title="Copy">
+      </div>
+    </td>`
+  } else document.getElementById("inheritanceVAT").innerHTML = "";
+  
+  finalPrice.innerHTML = 
+    `<td>სულ:</td>
+    <td>
+      <div class="text-and-copy" >
+        <span id="full-price-inheritance">
+          ${fullPriceInh()} (${integersToWords(fullPriceInh())}${decimalsToWords(fullPriceInh())} ლარი
+        </span> 
+        <img id="copyInheritanceFullBttn" class="copy-icon" src="copy1.png" title="Copy">
+      </div>
+    </td>`
+  ; 
+
+
+  renderFullTextInh();
+}
+
+
+function renderFullTextInh() {
+  const fullTextArea = document.getElementById('fullTextInheritance');
+  let fullText = "";
+  if (inheritanceVAT() > 0 ) {
+    fullText = `გადახდილია სანოტარო მომსახურების საზღაური სულ: <b> ${fullPriceInh()} (${integersToWords(fullPriceInh())}${decimalsToWords(fullPriceInh())} ლარი,</b> მათ შორის: ${inheritance()} (${integersToWords(inheritance())}${decimalsToWords(inheritance())} ლარი, თანახმად საქართველოს მთავრობის 2011 წლის 29 დეკემბერის №507 დადგენილების (სანოტარო მოქმედებათა შესრულებისათვის საზღაურისა და საქართველოს ნოტარიუსთა პალატისთვის დადგენილი საფასურის ოდენობების, მათი გადახდევინების წესისა და მომსახურების ვადების დამტკიცების შესახებ) მე-18, 23-ე და 29-ე მუხლებისა, 5 (ხუთი) ლარი - ელექტრონულ სანოტარო რეესტრში სანოტარო მოქმედების რეგისტრაციის საფასური, თანახმად ზემოხსენებული დადგენილების 39-ე მუხლისა და დღგ - ${inheritanceVAT()} (${integersToWords(inheritanceVAT())}${decimalsToWords(inheritanceVAT())} ლარი, თანახმად საქართველოს საგადასახადო კოდექსის 166-ე მუხლისა.`
+  } else {
+    fullText = `გადახდილია სანოტარო მომსახურების საზღაური სულ:<b> ${fullPriceInh()} (${integersToWords(fullPriceInh())}${decimalsToWords(fullPriceInh())} ლარი,</b> მათ შორის: ${inheritance()} (${integersToWords(inheritance())}${decimalsToWords(inheritance())} ლარი, თანახმად საქართველოს მთავრობის 2011 წლის 29 დეკემბერის №507 დადგენილების (სანოტარო მოქმედებათა შესრულებისათვის საზღაურისა და საქართველოს ნოტარიუსთა პალატისთვის დადგენილი საფასურის ოდენობების, მათი გადახდევინების წესისა და მომსახურების ვადების დამტკიცების შესახებ) მე-18, 23-ე და 29-ე მუხლებისა და 5 (ხუთი) ლარი - ელექტრონულ სანოტარო რეესტრში სანოტარო მოქმედების რეგისტრაციის საფასური, თანახმად ზემოხსენებული დადგენილების 39-ე მუხლისა.`
+  }  
+  
+  fullTextArea.innerHTML = 
+    `<div class = "fullText">
+      <span id="copy-full-txt-inheritance">${fullText}</span>
+      <div class="copy-full-bttn">
+        <button id="copyFullTextInheritance">კოპირება</button>
+      </div>
+    </div>`;
+
+    eventListenersforCopyingInh();
+}
+
+
+function setupEventListenersInh() {
+  const submitBttn = document.getElementById('submit-inheritance');
+  const resetBttn = document.getElementById('reset-inheritance');
+  
+  //submitBttn.removeEventListener('click', mySubmitInh);
+  submitBttn.addEventListener('click', mySubmitInh);
+  submitBttn.addEventListener('click', renderFullTextInh);
+  resetBttn.addEventListener('click', resetInh);
+
+
+
+}
+
+setupEventListenersInh();
+
+
+
+function eventListenersforCopyingInh() {
+  const copyInheritanceFullBttn = document.getElementById('copyInheritanceFullBttn');
+  const copyInheritanceBttn = document.getElementById('copyInheritanceBttn');
+  const copyInheritanceVatBttn = document.getElementById('copyInheritanceVatBttn');
+  const copyFullTextInheritance = document.getElementById('copyFullTextInheritance');
+
+  copyInheritanceFullBttn.addEventListener('click', () => {copyContent(document.getElementById('full-price-inheritance').innerText)});
+  copyInheritanceBttn.addEventListener('click', () => {copyContent(document.getElementById('notary-price-inheritance').innerText)}); 
+  copyInheritanceVatBttn?.addEventListener('click', () => {copyContent(document.getElementById('VAT-inheritance').innerText)});
+  copyFullTextInheritance.addEventListener('click', () => {copyRich(document.getElementById('copy-full-txt-inheritance'))});
+
+}
+
+
+
+function resetInh() {
+  document.getElementById("inheritanceForm").reset();
+  document.getElementById("inheritancePrice").innerHTML = "";
+  document.getElementById("inheritanceVAT").innerHTML = "";
+  document.getElementById('inheritanceFullPrice').innerHTML = "";
+  document.getElementById('fullTextInheritance').innerHTML = "";
+}
+ 
