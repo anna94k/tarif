@@ -191,14 +191,15 @@ export function integersToWords(number) {
 
 
 
-  if (number > 2000) {
+  if (number >= 2000) {
+    if (words !== "") words += " ";
     words += numbersToWords[Math.floor(number / 1000)];
-    words = words + " ათას";
+    if (number % 1000 === 0) {words += " ათასი"} else words += " ათას";
 
     number %= 1000;
   }
 
-  if (number > 1000 && number < 2000) {
+  if (number > 1000) {
     
     words += "ათას";
 
