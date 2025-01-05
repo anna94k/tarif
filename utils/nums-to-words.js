@@ -24,25 +24,8 @@ const numbersToWords = {
   60: "სამოცი",
   80: "ოთხმოცი",
   100: "ასი",
-  200: "ორასი",
-  300: "სამასი",
-  400: "ოთხასი",
-  500: "ხუთასი",
-  600: "ექვსასი",
-  700: "შვიდასი",
-  800: "რვაასი",
-  900: "ცხრაასი",
   1000: "ათასი",
-  2000: "ორი ათასი",
-  3000: "სამი ათასი",
-  4000: "ოთხი ათასი",
-  5000: "ხუთი ათასი",
-  6000: "ექვსი ათასი",
-  7000: "შვიდი ათასი",
-  8000: "რვა ათასი",
-  9000: "ცხრა ათასი",
-  10000: "ათი ათასი",
-  20000: "ოცი ათასი",
+  1000000: "მილიონი",
 };
 
 export function integersToWords(number) {
@@ -52,6 +35,161 @@ export function integersToWords(number) {
 
   if (number === 0) return "";
   let words = "";
+
+
+
+  //=========================================
+
+  if (number > 1000000) {
+    let words2 = Math.floor(number / 1000000);
+
+    if (words2 in numbersToWords && words2 !==0) words += numbersToWords[words2];
+
+    if (words2 == 300 || words2 == 400 || words2 == 500 || words2 == 600|| words2 == 700 || words2 == 900) {
+      if (words !== "") words += " ";
+      words += numbersToWords[Math.floor(words2 / 100)];
+      words = String(words);
+      words = words.replace(/.$/, "");
+      words = words + "ასი";
+  
+      words2 %= 100;
+    }
+  
+    if (words2 >= 800 && words2 < 1000) {
+      if (words !== "") words += " ";
+      words += numbersToWords[Math.floor(words2 / 100)];
+      if (words2 % 100 ===0) {words += "ასი"} else words += "ას";
+      
+      words2 %= 100;
+    }
+  
+    if (words2 >= 200) {
+      if (words !== "") words += " ";
+      words += numbersToWords[Math.floor(words2 / 100)];
+      words = String(words);
+      words = words.replace(/.$/, "");
+      if (words2 % 100 ===0) {words += "ასი"} else words += "ას";
+      
+      words2 %= 100;
+    }
+  
+    if (words2 > 100) {
+      if (words !== "") words += " ";
+      words += "ას";
+  
+      words2 %= 100;
+    }
+
+    if (words2 > 10) {
+      if (words !== "") words += " ";
+  
+      if (words2 < 20) words += numbersToWords[words2];
+      else {
+  
+        words += numbersToWords[Math.floor(words2 / 20)  * 20];
+  
+        if (words2 % 20 > 0) {
+          words = String(words);
+          words = words.replace(/.$/, ""); 
+          words += "და" + numbersToWords[words2 % 20];
+        }
+      }
+    }
+
+    if (number % 1000000 === 0) {words += " მილიონი"} else words += " მილიონ";
+
+    number %= 1000000;
+  }
+
+  //==========================================
+
+  if (number > 100000) {
+    if (words !== "") words += " ";
+
+    let words2 = Math.floor(number / 1000);
+
+    if (words2 in numbersToWords && words2 !==0) words += numbersToWords[words2];
+
+    if (words2 == 300 || words2 == 400 || words2 == 500 || words2 == 600|| words2 == 700 || words2 == 900) {
+      if (words !== "") words += " ";
+      words += numbersToWords[Math.floor(words2 / 100)];
+      words = String(words);
+      words = words.replace(/.$/, "");
+      words = words + "ასი";
+  
+      words2 %= 100;
+    }
+  
+    if (words2 >= 800 && words2 < 1000) {
+      if (words !== "") words += " ";
+      words += numbersToWords[Math.floor(words2 / 100)];
+      if (words2 % 100 ===0) {words += "ასი"} else words += "ას";
+      
+      words2 %= 100;
+    }
+  
+    if (words2 >= 200) {
+      if (words !== "") words += " ";
+      words += numbersToWords[Math.floor(words2 / 100)];
+      words = String(words);
+      words = words.replace(/.$/, "");
+      if (words2 % 100 ===0) {words += "ასი"} else words += "ას";
+      
+      words2 %= 100;
+    }
+  
+    if (words2 > 100) {
+      if (words !== "") words += " ";
+      words += "ას";
+  
+      words2 %= 100;
+    }
+
+    if (words2 > 0) {
+      if (words !== "") words += " ";
+  
+      if (words2 < 20) words += numbersToWords[words2];
+      else {
+  
+        words += numbersToWords[Math.floor(words2 / 20)  * 20];
+  
+        if (words2 % 20 > 0) {
+          words = String(words);
+          words = words.replace(/.$/, ""); 
+          words += "და" + numbersToWords[words2 % 20];
+        }
+      }
+    }
+
+    if (number % 1000 === 0) {words += " ათასი"} else words += " ათას";
+
+    number %= 1000;
+  }
+
+
+
+  //==========================================
+
+
+  if (number > 20000) {
+    if (words !== "") words += " ";
+    let words2 = Math.floor(number / 1000);
+    
+    words += numbersToWords[Math.floor(words2 / 20)  * 20];
+    
+    if (words2 % 20 > 0) {
+      words = String(words);
+      words = words.replace(/.$/, ""); 
+      words += "და" + numbersToWords[words2 % 20];
+    }
+
+    if (number % 1000 === 0) {words += " ათასი"} else words += " ათას";
+
+    number %= 1000;
+  }
+
+
+
 
   if (number > 2000) {
     words += numbersToWords[Math.floor(number / 1000)];
@@ -77,25 +215,27 @@ export function integersToWords(number) {
     number %= 100;
   }
 
-  if (number > 800 && number < 1000) {
+  if (number >= 800 && number < 1000) {
     if (words !== "") words += " ";
     words += numbersToWords[Math.floor(number / 100)];
-    words = words + "ას";
+   
+    if (number % 100 ===0) {words += "ასი"} else words += "ას";
 
     number %= 100;
   }
 
-  if (number > 200 && number < 800) {
+  if (number >= 200) {
     if (words !== "") words += " ";
     words += numbersToWords[Math.floor(number / 100)];
     words = String(words);
     words = words.replace(/.$/, "");
-    words = words + "ას";
+    
+    if (number % 100 ===0) {words += "ასი"} else words += "ას";
 
     number %= 100;
   }
 
-  if (number > 100 && number < 200) {
+  if (number > 100) {
     if (words !== "") words += " ";
     words += "ას";
 
@@ -117,6 +257,7 @@ export function integersToWords(number) {
       }
     }
   }
+
 
   return words;
 }

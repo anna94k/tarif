@@ -243,9 +243,38 @@ dateControl.addEventListener('change', renderDate);
 
 
 
+//================================================================
+
+function getResult()  { 
+  let myNumber = Number(document.getElementById("num-to-words").value);
+  myNumber = Math.round(myNumber * 100) / 100;
+
+  let result = integersToWords(myNumber) + decimalsToWords(myNumber);
+  result = result.replace(/.$/, "");
+
+  return result;
+} 
+
+function getResult2()  { 
+  let myNumber = Number(document.getElementById("num-to-words").value);
+  myNumber = Math.round(myNumber * 100) / 100;
+
+  let result = `${myNumber} (${integersToWords(myNumber)}${decimalsToWords(myNumber)} ლარი`;
+
+  return result;
+} 
+
+// const renderNumToWords = () => document.getElementById('num-to-words-result').innerHTML = `${getResult()}`; 
+
+function renderNumToWords() {
+  document.getElementById('num-to-words-result').innerHTML = `${getResult()}`;
+
+  document.getElementById('num-to-words-result2').innerHTML = `${getResult2()}`;
+}
 
 
-
+document.getElementById("num-to-words").addEventListener("keyup", renderNumToWords); 
+document.getElementById("num-to-words").addEventListener("change", renderNumToWords);
 
 
 
@@ -726,3 +755,6 @@ function resetInh() {
   document.getElementById('fullTextInheritance').innerHTML = "";
 }
  
+
+
+
