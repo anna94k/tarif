@@ -200,7 +200,8 @@ export function integersToWords(number) {
   }
 
   if (number > 1000) {
-    
+    if (words !== "") words += " ";
+
     words += "ათას";
 
     number %= 1000;
