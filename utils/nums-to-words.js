@@ -80,19 +80,15 @@ export function integersToWords(number) {
       words2 %= 100;
     }
 
-    if (words2 > 10) {
+    if (words2 > 20) {
       if (words !== "") words += " ";
   
-      if (words2 < 20) words += numbersToWords[words2];
-      else {
-  
-        words += numbersToWords[Math.floor(words2 / 20)  * 20];
-  
-        if (words2 % 20 > 0) {
-          words = String(words);
-          words = words.replace(/.$/, ""); 
-          words += "და" + numbersToWords[words2 % 20];
-        }
+      words += numbersToWords[Math.floor(words2 / 20)  * 20];
+
+      if (words2 % 20 > 0) {
+        words = String(words);
+        words = words.replace(/.$/, ""); 
+        words += "და" + numbersToWords[words2 % 20];
       }
     }
 
@@ -187,8 +183,6 @@ export function integersToWords(number) {
 
     number %= 1000;
   }
-
-
 
 
   if (number >= 2000) {
