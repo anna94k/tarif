@@ -3,6 +3,20 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  margin-top: 5px;
+}
+
+#date-numbers {
+  margin: 5px;
+  display: flex;
+  flex-wrap: nowrap;
+  margin-bottom: 0;
+
+}
+
+#date-numbers>div {
+  margin: 10px;
+  margin-bottom: 0;
 }
 
 .parts {
@@ -31,10 +45,14 @@ h3 {
   background-color: #dddddd;
 }
 
-input:not(.checkbox, .radio-input) {
+input:not(.checkbox, .radio-input, .date-input) {
   height: 25px;
   width: 70px;
   margin-left: 10px;
+}
+
+.date-input {
+  height: 25px;
 }
 
 .checkbox {
@@ -44,16 +62,12 @@ input:not(.checkbox, .radio-input) {
 }
 
 .vat-label {
-  text-align:end;
+  text-align: end;
 }
 
 input:invalid {
   border: 2px solid red;
   border-radius: 3px;
-}
-
-.date-input {
-  width: 110px;
 }
 
 .submit-bttn {
@@ -77,7 +91,7 @@ input:invalid {
 }
 
 .reset-bttn:active {
-  color:rgb(136, 136, 136);
+  color: rgb(136, 136, 136);
 }
 
 .bttns {
@@ -96,7 +110,7 @@ input:invalid {
   background-color: #464646;
   color: white;
   border-collapse: collapse;
-} 
+}
 
 .result-table td {
   padding: 5px;
@@ -136,7 +150,7 @@ input:invalid {
   padding: 5px;
   margin-top: 10px;
   margin-bottom: 5px;
-  font-size:medium;
+  font-size: medium;
 }
 
 .copy-full-bttn {
@@ -148,4 +162,7 @@ input:invalid {
   cursor: pointer;
 }
 
-
+#note {
+  max-width: 450px;
+  color: red;
+}

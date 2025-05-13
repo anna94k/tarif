@@ -1,12 +1,12 @@
-import {integersToWords, decimalsToWords} from './utils/nums-to-words.js';
-import { getUserTime, inputTimeToWords } from './utils/date.js';
+import { integersToWords, decimalsToWords } from './utils/nums-to-words.js';
+import { getUserTime, inputTimeToWords, inputTimeToWordsDative, inputTimeToWordsGenitive } from './utils/date.js';
 import { copyContent, copyRich } from './utils/copy.js';
 
 
 // -----Calculation-----ხელმოწერები------
 
 function signatures() {
-  let pageNum = Number(document.getElementById("pageNum").value); 
+  let pageNum = Number(document.getElementById("pageNum").value);
   pageNum = Math.round(pageNum);
   let ppl = Number(document.getElementById("ppl").value);
   ppl = Math.round(ppl);
@@ -16,7 +16,7 @@ function signatures() {
   if (pageNum <= 0) pageNum = 1;
   if (ppl <= 0) ppl = 1;
   if (copies <= 0) copies = 1;
- 
+
   let notaryPrice = ppl * copies * pageNum;
 
   if (pageNum === 1) {
@@ -31,7 +31,7 @@ function signatures() {
 
   return notaryPrice;
 }
- 
+
 
 function forProject() {
   const project0 = document.getElementById("project0");
@@ -46,18 +46,18 @@ function forProject() {
     if (projectAmount < 0) projectAmount = 0;
     return projectAmount;
   }
-  
+
 }
 
 function priceVAT() {
   const vatPrice = Math.round((signatures() + forProject()) * 18) / 100;
   let checkBox = document.getElementById("vatSelector");
 
-  if (checkBox.checked == true) {return vatPrice;} else {return 0}
+  if (checkBox.checked == true) { return vatPrice; } else { return 0 }
 }
 
 function fullPrice() {
-  let x = Math.round((forProject() + priceVAT() + signatures() + 5)*100)/100;
+  let x = Math.round((forProject() + priceVAT() + signatures() + 5) * 100) / 100;
 
   return x;
 }
@@ -71,9 +71,9 @@ function mySubmit() {
   const notaryPrice = document.getElementById('signaturesPrice');
   const vatPrice = document.getElementById('signVAT');
   const projectPrice = document.getElementById('forProject');
-  const finalPrice = document.getElementById('signFullPrice'); 
+  const finalPrice = document.getElementById('signFullPrice');
 
-  notaryPrice.innerHTML = 
+  notaryPrice.innerHTML =
     `<td>საზღაური:</td>
     <td>
       <div class="text-and-copy">
@@ -83,9 +83,10 @@ function mySubmit() {
         <img id="copySignaturesBttn" class="copy-icon" src="copy1.png" title="Copy">
       </div>
     </td>`;
-  
-  if (priceVAT() > 0) {vatPrice.innerHTML = 
-    `<td>დღგ:</td>
+
+  if (priceVAT() > 0) {
+    vatPrice.innerHTML =
+      `<td>დღგ:</td>
     <td>
       <div class="text-and-copy">
         <span id="copy-VAT-txt">
@@ -96,8 +97,9 @@ function mySubmit() {
     </td>`
   } else document.getElementById("signVAT").innerHTML = "";
 
-  if (forProject() > 0) {projectPrice.innerHTML = 
-    `<td>პროექტისთვის:</td>
+  if (forProject() > 0) {
+    projectPrice.innerHTML =
+      `<td>პროექტისთვის:</td>
     <td >
       <div class="text-and-copy">
           <span id="copy-project-txt">
@@ -106,9 +108,9 @@ function mySubmit() {
           <img id="copyProjectBttn" class="copy-icon" src="copy1.png" title="Copy">
       </div>
     </td>`
-  } else document.getElementById("forProject").innerHTML = ""; 
-  
-  finalPrice.innerHTML = 
+  } else document.getElementById("forProject").innerHTML = "";
+
+  finalPrice.innerHTML =
     `<td>სულ:</td>
     <td>
       <div class="text-and-copy" >
@@ -118,7 +120,7 @@ function mySubmit() {
         <img id="copyFullBttn" class="copy-icon" src="copy1.png" title="Copy">
       </div>
     </td>`
-  ; 
+    ;
 
 
   renderFullText();
@@ -140,9 +142,9 @@ function renderFullText() {
     fullText = `გადახდილია სანოტარო მომსახურების საზღაური სულ:<b> ${fullPrice()} (${integersToWords(fullPrice())}${decimalsToWords(fullPrice())} ლარი,</b> მათ შორის: ${signatures()} (${integersToWords(signatures())}) ლარი, თანახმად საქართველოს მთავრობის 2011 წლის 29 დეკემბერის №507 დადგენილების (სანოტარო მოქმედებათა შესრულებისათვის საზღაურისა და საქართველოს ნოტარიუსთა პალატისთვის დადგენილი საფასურის ოდენობების, მათი გადახდევინების წესისა და მომსახურების ვადების დამტკიცების შესახებ) 31.3 მუხლისა, ${forProject()} (${integersToWords(forProject())}${decimalsToWords(forProject())} ლარი - გარიგების პროექტის შედგენისათვის, თანახმად ამავე დადგენილების 30-ე მუხლისა და 5 (ხუთი) ლარი - ელექტრონულ სანოტარო რეესტრში სანოტარო მოქმედების რეგისტრაციის საფასური, თანახმად ზემოხსენებული დადგენილების 39-ე მუხლისა.`
   } else if (priceVAT() === 0 && forProject() === 0) {
     fullText = `გადახდილია სანოტარო მომსახურების საზღაური სულ:<b> ${fullPrice()} (${integersToWords(fullPrice())}${decimalsToWords(fullPrice())} ლარი,</b> მათ შორის: ${signatures()} (${integersToWords(signatures())}) ლარი, თანახმად საქართველოს მთავრობის 2011 წლის 29 დეკემბერის №507 დადგენილების (სანოტარო მოქმედებათა შესრულებისათვის საზღაურისა და საქართველოს ნოტარიუსთა პალატისთვის დადგენილი საფასურის ოდენობების, მათი გადახდევინების წესისა და მომსახურების ვადების დამტკიცების შესახებ) 31.3 მუხლისა და 5 (ხუთი) ლარი - ელექტრონულ სანოტარო რეესტრში სანოტარო მოქმედების რეგისტრაციის საფასური, თანახმად ზემოხსენებული დადგენილების 39-ე მუხლისა.`
-  }  
-  
-  fullTextArea.innerHTML = 
+  }
+
+  fullTextArea.innerHTML =
     `<div class = "fullText">
       <span id="copy-full-txt">${fullText}</span>
       <div class="copy-full-bttn">
@@ -157,7 +159,7 @@ function renderFullText() {
 function setupEventListeners() {
   const submitBttn = document.getElementById('submit');
   const resetBttn = document.getElementById('reset');
-  
+
   //submitBttn.removeEventListener('click', mySubmit);
   submitBttn.addEventListener('click', mySubmit);
   submitBttn.addEventListener('click', renderFullText);
@@ -166,11 +168,11 @@ function setupEventListeners() {
 
   const project0 = document.getElementById("project0");
   const project10 = document.getElementById("project10");
-  const projectOther = document.getElementById("projectOther"); 
+  const projectOther = document.getElementById("projectOther");
 
-  project0.addEventListener('click', () => {document.getElementById('projectAmount').setAttribute('disabled', 'disabled'); const projectInput = document.getElementById("projectAmount"); projectInput.value = "0"});
-  project10.addEventListener('click', () => {document.getElementById('projectAmount').setAttribute('disabled', 'disabled'); const projectInput = document.getElementById("projectAmount"); projectInput.value = "10"});
-  projectOther.addEventListener('click', () => {document.getElementById('projectAmount').removeAttribute('disabled')});
+  project0.addEventListener('click', () => { document.getElementById('projectAmount').setAttribute('disabled', 'disabled'); const projectInput = document.getElementById("projectAmount"); projectInput.value = "0" });
+  project10.addEventListener('click', () => { document.getElementById('projectAmount').setAttribute('disabled', 'disabled'); const projectInput = document.getElementById("projectAmount"); projectInput.value = "10" });
+  projectOther.addEventListener('click', () => { document.getElementById('projectAmount').removeAttribute('disabled') });
 
 }
 
@@ -185,11 +187,11 @@ function eventListenersforCopying() {
   const copyVatBttn = document.getElementById('copyVatBttn');
   const copyFullText = document.getElementById('copyFullText');
 
-  copyFullBttn.addEventListener('click', () => {copyContent(document.getElementById('full-price-txt').innerText)});
-  copySignaturesBttn.addEventListener('click', () => {copyContent(document.getElementById('copy-notary-txt').innerText)}); 
-  copyProjectBttn?.addEventListener('click', () => {copyContent(document.getElementById('copy-project-txt').innerText)});
-  copyVatBttn?.addEventListener('click', () => {copyContent(document.getElementById('copy-VAT-txt').innerText)});
-  copyFullText.addEventListener('click', () => {copyRich(document.getElementById('copy-full-txt'))});
+  copyFullBttn.addEventListener('click', () => { copyContent(document.getElementById('full-price-txt').innerText) });
+  copySignaturesBttn.addEventListener('click', () => { copyContent(document.getElementById('copy-notary-txt').innerText) });
+  copyProjectBttn?.addEventListener('click', () => { copyContent(document.getElementById('copy-project-txt').innerText) });
+  copyVatBttn?.addEventListener('click', () => { copyContent(document.getElementById('copy-VAT-txt').innerText) });
+  copyFullText.addEventListener('click', () => { copyRich(document.getElementById('copy-full-txt')) });
 
 }
 
@@ -216,12 +218,13 @@ function reset() {
 
 
 // --------------DATE
-document.getElementById("date1").innerHTML = `${getUserTime()}`;
 
-function toDateInputValue(dateObject){
+//document.getElementById("date1").innerHTML = `${getUserTime()}`;
+
+function toDateInputValue(dateObject) {
   const local = new Date(dateObject);
   local.setMinutes(dateObject.getMinutes() - dateObject.getTimezoneOffset());
-  return local.toJSON().slice(0,10);
+  return local.toJSON().slice(0, 10);
 };
 
 const dateControl = document.querySelector('input[type="date"]');
@@ -232,20 +235,41 @@ function dateSubmit() {
   const dateInput = dateControl.value;
   const toWords = inputTimeToWords(dateInput);
 
- return `${toWords}`;
+  return `${toWords}`;
 }
 
+function dateSubmitDative() {
+  const dateInput = dateControl.value;
+  const toWords = inputTimeToWordsDative(dateInput);
 
-const renderDate = () => document.getElementById("date2").innerHTML = `${dateSubmit()}`;
+  return `${toWords}`;
+}
+
+function dateSubmitGenitive() {
+  const dateInput = dateControl.value;
+  const toWords = inputTimeToWordsGenitive(dateInput);
+
+  return `${toWords}`;
+}
+
+const renderDate = () => document.getElementById("date3").innerHTML = `${dateSubmit()}`;
+
+const renderDateDative = () => document.getElementById("date2").innerHTML = `${dateSubmitDative()}`;
+
+const renderDateGenitive = () => document.getElementById("date4").innerHTML = `${dateSubmitGenitive()}`;
 
 renderDate();
+renderDateDative();
+renderDateGenitive();
 dateControl.addEventListener('change', renderDate);
+dateControl.addEventListener('change', renderDateDative);
+dateControl.addEventListener('change', renderDateGenitive);
 
 
 
 //================================================================
 
-function getResult()  { 
+function getResult() {
   let myNumber = Number(document.getElementById("num-to-words").value);
   myNumber = Math.round(myNumber * 100) / 100;
 
@@ -253,16 +277,16 @@ function getResult()  {
   result = result.replace(/.$/, "");
 
   return result;
-} 
+}
 
-function getResult2()  { 
+function getResult2() {
   let myNumber = Number(document.getElementById("num-to-words").value);
   myNumber = Math.round(myNumber * 100) / 100;
 
   let result = `${myNumber} (${integersToWords(myNumber)}${decimalsToWords(myNumber)} ლარი`;
 
   return result;
-} 
+}
 
 // const renderNumToWords = () => document.getElementById('num-to-words-result').innerHTML = `${getResult()}`; 
 
@@ -273,7 +297,7 @@ function renderNumToWords() {
 }
 
 
-document.getElementById("num-to-words").addEventListener("keyup", renderNumToWords); 
+document.getElementById("num-to-words").addEventListener("keyup", renderNumToWords);
 document.getElementById("num-to-words").addEventListener("change", renderNumToWords);
 
 
@@ -282,14 +306,14 @@ document.getElementById("num-to-words").addEventListener("change", renderNumToWo
 // ------------ ასლის დამოწმება ---calculation
 
 function copies() {
-  let pageNum = Number(document.getElementById("pageNumCopy").value); 
+  let pageNum = Number(document.getElementById("pageNumCopy").value);
   pageNum = Math.round(pageNum);
   let copies = Number(document.getElementById("copiesCopy").value);
   copies = Math.round(copies);
 
   if (pageNum <= 0) pageNum = 1;
   if (copies <= 0) copies = 1;
- 
+
   let notaryPrice = copies * pageNum;
 
   if (pageNum === 1) {
@@ -314,7 +338,7 @@ function forCopying() {
     let forCopying = Number(document.getElementById("forCopying").value);
     forCopying = Math.round(forCopying * 100) / 100;
 
-    let pageNum = Number(document.getElementById("pageNumCopy").value); 
+    let pageNum = Number(document.getElementById("pageNumCopy").value);
     pageNum = Math.round(pageNum);
 
     let copies = Number(document.getElementById("copiesCopy").value);
@@ -327,18 +351,18 @@ function forCopying() {
     }
     return forCopying;
   }
-  
+
 }
 
 function copiesVAT() {
   const vatPrice = Math.round(((copies() + forCopying())) * 18) / 100;
   let checkBox = document.getElementById("copyVatSelector");
 
-  if (checkBox.checked == true) {return vatPrice;} else {return 0}
+  if (checkBox.checked == true) { return vatPrice; } else { return 0 }
 }
 
 function copiesFullPrice() {
-  let x = Math.round((forCopying() + copiesVAT() + copies())*100)/100;
+  let x = Math.round((forCopying() + copiesVAT() + copies()) * 100) / 100;
 
   return x;
 }
@@ -347,38 +371,87 @@ function copiesFullPrice() {
 // -------------------------
 
 function mySubmitCopies() {
-  const notaryPrice = document.getElementById('copiesPrice');
-  const vatPrice = document.getElementById('copiesVAT');
-  const forCopyingResult = document.getElementById('forCopyingResult');
-  const finalPrice = document.getElementById('copyFullPrice'); 
+  const notaryPrice = document.getElementById('copiesNotaryPrice');
+  const vatPrice = document.getElementById('copiesVATprice');
+  const forCopyingResult = document.getElementById('priceForCopying');
+  const finalPrice = document.getElementById('copiesFullPrice');
 
-  notaryPrice.innerHTML = `${copies()} (${integersToWords(copies())}) ლარი`;  
-  
-  if (copiesVAT() > 0) {vatPrice.innerHTML = `${copiesVAT()} (${integersToWords(copiesVAT())}${decimalsToWords(copiesVAT())} ლარი`} else vatPrice.innerHTML = ""; 
+  notaryPrice.innerHTML =
+    `<td>საზღაური:</td>
+  <td>
+    <div class="text-and-copy">
+      <span id="copiesPrice">
+      ${copies()} (${integersToWords(copies())}) ლარი
+      </span><img id="copy-notary-copies" class="copy-icon" src="copy1.png" title="Copy">
+    </div>
+  </td>`;
 
-  if (forCopying() > 0) {forCopyingResult.innerHTML = `${forCopying()} (${integersToWords(forCopying())}${decimalsToWords(forCopying())} ლარი`} else forCopyingResult.innerHTML = "";  
-  
-  finalPrice.innerHTML = `${copiesFullPrice()} (${integersToWords(copiesFullPrice())}${decimalsToWords(copiesFullPrice())} ლარი`; 
+  if (copiesVAT() > 0) {
+    vatPrice.innerHTML =
+      `<td>დღგ:</td>
+    <td>
+      <div class="text-and-copy">
+          <span id="copiesVAT">
+          ${copiesVAT()} (${integersToWords(copiesVAT())}${decimalsToWords(copiesVAT())} ლარი
+          </span><img id="copy-VAT-copies" class="copy-icon" src="copy1.png" title="Copy">
+      </div>
+    </td>`
+  } else vatPrice.innerHTML = "";
+
+  if (forCopying() > 0) {
+    forCopyingResult.innerHTML =
+      `<td>ასლისთვის:</td>
+    <td >
+      <div class="text-and-copy">
+        <span id="forCopyingResult">
+        ${forCopying()} (${integersToWords(forCopying())}${decimalsToWords(forCopying())} ლარი
+        </span><img id="copy-for-copying" class="copy-icon" src="copy1.png" title="Copy">
+      </div>
+    </td>`
+  } else forCopyingResult.innerHTML = "";
+
+  finalPrice.innerHTML =
+    `<td>სულ:</td>
+  <td>
+    <div class="text-and-copy">
+      <span id="copyFullPrice">
+      ${copiesFullPrice()} (${integersToWords(copiesFullPrice())}${decimalsToWords(copiesFullPrice())} ლარი
+      </span><img id="copy-full-copies" class="copy-icon" src="copy1.png" title="Copy">
+    </div>
+  </td>`;
+
+
 }
 
 
 function renderFullTextCopies() {
-  const fullTextArea = document.getElementById('copiesFullText');
+  const fullTextArea = document.getElementById('fullTextCopies');
+  let fullText = "";
   if (copiesVAT() > 0 && forCopying() > 0) {
-    fullTextArea.innerHTML = `სანოტარო მოქმედების შესრულებისათვის გადახდილ იქნა საზღაური სულ: <b> ${copiesFullPrice()} (${integersToWords(copiesFullPrice())}${decimalsToWords(copiesFullPrice())} ლარი,</b> მათ შორის: ${copies()} (${integersToWords(copies())}) ლარი – თანახმად "სანოტარო მოქმედებათა შესრულეებისათვის საზღაურისა და საქართველოს ნოტარიუსთა პალატისთვის დადგენილი საფასურის ოდენობების, მათი გადახდევინების წესისა და მომსახურების ვადების დამტკიცების შესახებ" საქართველოს მთავრობის 2011 წლის 29 დეკემბრის #507 დადგენილების 31-ე მუხლისა, ${forCopying()} (${integersToWords(forCopying())}${decimalsToWords(forCopying())} ლარი, თანახმად ამავე დადგენილების 35-ე მუხლისა და დღგ ${copiesVAT()} (${integersToWords(copiesVAT())}${decimalsToWords(copiesVAT())} ლარი, თანახმად საქართველოს საგადასახადო კოდექსის 166-ე მუხლისა.`
+    fullText = `სანოტარო მოქმედების შესრულებისათვის გადახდილ იქნა საზღაური სულ: <b> ${copiesFullPrice()} (${integersToWords(copiesFullPrice())}${decimalsToWords(copiesFullPrice())} ლარი,</b> მათ შორის: ${copies()} (${integersToWords(copies())}) ლარი – თანახმად "სანოტარო მოქმედებათა შესრულეებისათვის საზღაურისა და საქართველოს ნოტარიუსთა პალატისთვის დადგენილი საფასურის ოდენობების, მათი გადახდევინების წესისა და მომსახურების ვადების დამტკიცების შესახებ" საქართველოს მთავრობის 2011 წლის 29 დეკემბრის #507 დადგენილების 31-ე მუხლისა, ${forCopying()} (${integersToWords(forCopying())}${decimalsToWords(forCopying())} ლარი, თანახმად ამავე დადგენილების 35-ე მუხლისა და დღგ ${copiesVAT()} (${integersToWords(copiesVAT())}${decimalsToWords(copiesVAT())} ლარი, თანახმად საქართველოს საგადასახადო კოდექსის 166-ე მუხლისა.`
   } else if (copiesVAT() > 0 && forCopying() === 0) {
-    fullTextArea.innerHTML = `სანოტარო მოქმედების შესრულებისათვის გადახდილ იქნა საზღაური სულ: <b> ${copiesFullPrice()} (${integersToWords(copiesFullPrice())}${decimalsToWords(copiesFullPrice())} ლარი,</b> მათ შორის: ${copies()} (${integersToWords(copies())}) ლარი – თანახმად "სანოტარო მოქმედებათა შესრულეებისათვის საზღაურისა და საქართველოს ნოტარიუსთა პალატისთვის დადგენილი საფასურის ოდენობების, მათი გადახდევინების წესისა და მომსახურების ვადების დამტკიცების შესახებ" საქართველოს მთავრობის 2011 წლის 29 დეკემბრის #507 დადგენილების 31-ე მუხლისა და დღგ ${copiesVAT()} (${integersToWords(copiesVAT())}${decimalsToWords(copiesVAT())} ლარი, თანახმად საქართველოს საგადასახადო კოდექსის 166-ე მუხლისა.`
+    fullText = `სანოტარო მოქმედების შესრულებისათვის გადახდილ იქნა საზღაური სულ: <b> ${copiesFullPrice()} (${integersToWords(copiesFullPrice())}${decimalsToWords(copiesFullPrice())} ლარი,</b> მათ შორის: ${copies()} (${integersToWords(copies())}) ლარი – თანახმად "სანოტარო მოქმედებათა შესრულეებისათვის საზღაურისა და საქართველოს ნოტარიუსთა პალატისთვის დადგენილი საფასურის ოდენობების, მათი გადახდევინების წესისა და მომსახურების ვადების დამტკიცების შესახებ" საქართველოს მთავრობის 2011 წლის 29 დეკემბრის #507 დადგენილების 31-ე მუხლისა და დღგ ${copiesVAT()} (${integersToWords(copiesVAT())}${decimalsToWords(copiesVAT())} ლარი, თანახმად საქართველოს საგადასახადო კოდექსის 166-ე მუხლისა.`
   } else if (copiesVAT() === 0 && forCopying() > 0) {
-    fullTextArea.innerHTML = `სანოტარო მოქმედების შესრულებისათვის გადახდილ იქნა საზღაური სულ: <b> ${copiesFullPrice()} (${integersToWords(copiesFullPrice())}${decimalsToWords(copiesFullPrice())} ლარი,</b> მათ შორის: ${copies()} (${integersToWords(copies())}) ლარი – თანახმად "სანოტარო მოქმედებათა შესრულეებისათვის საზღაურისა და საქართველოს ნოტარიუსთა პალატისთვის დადგენილი საფასურის ოდენობების, მათი გადახდევინების წესისა და მომსახურების ვადების დამტკიცების შესახებ" საქართველოს მთავრობის 2011 წლის 29 დეკემბრის #507 დადგენილების 31-ე მუხლისა და ${forCopying()} (${integersToWords(forCopying())}${decimalsToWords(forCopying())} ლარი, თანახმად ამავე დადგენილების 35-ე მუხლისა.`
+    fullText = `სანოტარო მოქმედების შესრულებისათვის გადახდილ იქნა საზღაური სულ: <b> ${copiesFullPrice()} (${integersToWords(copiesFullPrice())}${decimalsToWords(copiesFullPrice())} ლარი,</b> მათ შორის: ${copies()} (${integersToWords(copies())}) ლარი – თანახმად "სანოტარო მოქმედებათა შესრულეებისათვის საზღაურისა და საქართველოს ნოტარიუსთა პალატისთვის დადგენილი საფასურის ოდენობების, მათი გადახდევინების წესისა და მომსახურების ვადების დამტკიცების შესახებ" საქართველოს მთავრობის 2011 წლის 29 დეკემბრის #507 დადგენილების 31-ე მუხლისა და ${forCopying()} (${integersToWords(forCopying())}${decimalsToWords(forCopying())} ლარი, თანახმად ამავე დადგენილების 35-ე მუხლისა.`
   } else if (copiesVAT() === 0 && forCopying() === 0) {
-    fullTextArea.innerHTML = `სანოტარო მოქმედების შესრულებისათვის გადახდილ იქნა საზღაური - <b> ${copies()} (${integersToWords(copies())}) ლარი,</b> თანახმად "სანოტარო მოქმედებათა შესრულეებისათვის საზღაურისა და საქართველოს ნოტარიუსთა პალატისთვის დადგენილი საფასურის ოდენობების, მათი გადახდევინების წესისა და მომსახურების ვადების დამტკიცების შესახებ" საქართველოს მთავრობის 2011 წლის 29 დეკემბრის #507 დადგენილების 31-ე მუხლისა.`
-  }  
+    fullText = `სანოტარო მოქმედების შესრულებისათვის გადახდილ იქნა საზღაური - <b> ${copies()} (${integersToWords(copies())}) ლარი,</b> თანახმად "სანოტარო მოქმედებათა შესრულეებისათვის საზღაურისა და საქართველოს ნოტარიუსთა პალატისთვის დადგენილი საფასურის ოდენობების, მათი გადახდევინების წესისა და მომსახურების ვადების დამტკიცების შესახებ" საქართველოს მთავრობის 2011 წლის 29 დეკემბრის #507 დადგენილების 31-ე მუხლისა.`
+  }
+
+  fullTextArea.innerHTML =
+    `<div class = "fullText">
+      <span id="copiesFullText">${fullText}</span>
+      <div class="copy-full-bttn">
+        <button id="copyFullTextCopies">კოპირება</button>
+      </div>
+    </div>`;
+
+  setTimeout(eventListenersforCopyingCopies, 0);
 }
 
 function setupEventListenersCopies() {
   const submitBttn = document.getElementById('submit-copies');
   const resetBttn = document.getElementById('reset-copies');
-  
+
   //submitBttn.removeEventListener('click', mySubmit);
   submitBttn.addEventListener('click', mySubmitCopies);
   submitBttn.addEventListener('click', renderFullTextCopies);
@@ -386,10 +459,10 @@ function setupEventListenersCopies() {
 
 
   const copy0 = document.getElementById("copy0");
-  const copyYes = document.getElementById("copyYes"); 
+  const copyYes = document.getElementById("copyYes");
 
-  copy0.addEventListener('click', () => {document.getElementById('forCopying').setAttribute('disabled', 'disabled'); const forCopyingInput = document.getElementById("forCopying"); forCopyingInput.value = "0"});
-  copyYes.addEventListener('click', () => {document.getElementById('forCopying').removeAttribute('disabled')});
+  copy0.addEventListener('click', () => { document.getElementById('forCopying').setAttribute('disabled', 'disabled'); const forCopyingInput = document.getElementById("forCopying"); forCopyingInput.value = "0" });
+  copyYes.addEventListener('click', () => { document.getElementById('forCopying').removeAttribute('disabled') });
 
 }
 
@@ -398,80 +471,82 @@ setupEventListenersCopies();
 function eventListenersforCopyingCopies() {
   const copyFullBttn = document.getElementById('copy-full-copies');
   const copySignaturesBttn = document.getElementById('copy-notary-copies');
-  const copyForCopyingBttn = document.getElementById('copy-for-copying'); 
+  const copyForCopyingBttn = document.getElementById('copy-for-copying');
   const copyVatBttn = document.getElementById('copy-VAT-copies');
   const copyFullText = document.getElementById('copyFullTextCopies');
 
-  copyFullBttn.addEventListener('click', () => {copyContent(document.getElementById('copyFullPrice').innerText)});
-  copySignaturesBttn.addEventListener('click', () => {copyContent(document.getElementById('copiesPrice').innerText)});
-  copyForCopyingBttn.addEventListener('click', () => {copyContent(document.getElementById('forCopyingResult').innerText)});
-  copyVatBttn.addEventListener('click', () => {copyContent(document.getElementById('copiesVAT').innerText)});
-  copyFullText.addEventListener('click', () => {copyRich(document.getElementById('copiesFullText'))});
+  copyFullBttn.addEventListener('click', () => { copyContent(document.getElementById('copyFullPrice').innerText) });
+  copySignaturesBttn.addEventListener('click', () => { copyContent(document.getElementById('copiesPrice').innerText) });
+  copyForCopyingBttn?.addEventListener('click', () => { copyContent(document.getElementById('forCopyingResult').innerText) });
+  copyVatBttn?.addEventListener('click', () => { copyContent(document.getElementById('copiesVAT').innerText) });
+  copyFullText.addEventListener('click', () => { copyRich(document.getElementById('copiesFullText')) });
 
 }
 
-eventListenersforCopyingCopies();
 
 function resetCopies() {
   document.getElementById("copiesForm").reset();
-  document.getElementById("copiesPrice").innerHTML = "";
-  document.getElementById("copiesVAT").innerHTML = "";
-  document.getElementById("forCopyingResult").innerHTML = "";
-  document.getElementById('copyFullPrice').innerHTML = "";
-  document.getElementById('copiesFullText').innerHTML = "";
+  document.getElementById("copiesNotaryPrice").innerHTML = "";
+  document.getElementById("copiesVATprice").innerHTML = "";
+  document.getElementById("priceForCopying").innerHTML = "";
+  document.getElementById('copiesFullPrice').innerHTML = "";
+  document.getElementById('fullTextCopies').innerHTML = "";
 
   document.getElementById('forCopying').setAttribute('disabled', 'disabled');
 }
 
 
+
+
+
 // -----Calculation-----ხელშეკრულებები------
 
 function agreements() {
-  let amount = Number(document.getElementById("agreementsAmount").value); 
+  let amount = Number(document.getElementById("agreementsAmount").value);
   amount = Math.round(amount * 100) / 100;
 
   if (amount < 0) amount = 0;
- 
+
   let notaryPrice;
 
   if (amount <= 500) {
-    notaryPrice = (amount * 3)/100;
+    notaryPrice = (amount * 3) / 100;
   } else if (amount <= 1000) {
-    notaryPrice = ((amount - 500) * 25)/1000 + 15;
+    notaryPrice = ((amount - 500) * 25) / 1000 + 15;
   } else if (amount <= 2000) {
-    notaryPrice = ((amount - 1000) * 15)/1000 + (275/10);
+    notaryPrice = ((amount - 1000) * 15) / 1000 + (275 / 10);
   } else if (amount <= 3000) {
-    notaryPrice = ((amount - 2000) * 1)/100 + (425/10);
+    notaryPrice = ((amount - 2000) * 1) / 100 + (425 / 10);
   } else if (amount <= 5000) {
-    notaryPrice = ((amount - 3000) * 5)/1000 + (525/10);
+    notaryPrice = ((amount - 3000) * 5) / 1000 + (525 / 10);
   } else if (amount <= 20000) {
-    notaryPrice = ((amount - 5000) * 4)/1000 + (625/10);
+    notaryPrice = ((amount - 5000) * 4) / 1000 + (625 / 10);
   } else if (amount <= 100000) {
-    notaryPrice = ((amount - 20000) * 3)/1000 + (1225/10);
+    notaryPrice = ((amount - 20000) * 3) / 1000 + (1225 / 10);
   } else if (amount <= 500000) {
-    notaryPrice = ((amount - 100000) * 2)/1000 + (3625/10);
+    notaryPrice = ((amount - 100000) * 2) / 1000 + (3625 / 10);
   } else if (amount <= 1000000) {
-    notaryPrice = ((amount - 500000) * 1)/1000 + (11625/10);
+    notaryPrice = ((amount - 500000) * 1) / 1000 + (11625 / 10);
   } else {
-    notaryPrice = ((amount - 1000000) * 5)/10000 + (16625/10);
+    notaryPrice = ((amount - 1000000) * 5) / 10000 + (16625 / 10);
   }
 
   notaryPrice = Math.round(notaryPrice * 100) / 100;
 
   return notaryPrice;
 }
- 
+
 
 
 function agreementsVAT() {
   const vatPrice = Math.round(agreements() * 18) / 100;
   let checkBox = document.getElementById("vatSelectorAgreements");
 
-  if (checkBox.checked == true) {return vatPrice;} else {return 0}
+  if (checkBox.checked == true) { return vatPrice; } else { return 0 }
 }
 
 function fullPriceAgr() {
-  let x = (agreementsVAT()*100 + agreements()*100)/100 + 5;
+  let x = Math.round((agreementsVAT() * 100 + agreements() * 100 + 500)) / 100;
 
   return x;
 }
@@ -484,9 +559,9 @@ function fullPriceAgr() {
 function mySubmitAgr() {
   const notaryPrice = document.getElementById('agreementsPrice');
   const vatPrice = document.getElementById('agreementsVAT');
-  const finalPrice = document.getElementById('agreementsFullPrice');  
+  const finalPrice = document.getElementById('agreementsFullPrice');
 
-  notaryPrice.innerHTML = 
+  notaryPrice.innerHTML =
     `<td>საზღაური:</td>
     <td>
       <div class="text-and-copy">
@@ -496,9 +571,10 @@ function mySubmitAgr() {
         <img id="copyAgreementsBttn" class="copy-icon" src="copy1.png" title="Copy">
       </div>
     </td>`;
-  
-  if (agreementsVAT() > 0) {vatPrice.innerHTML = 
-    `<td>დღგ:</td>
+
+  if (agreementsVAT() > 0) {
+    vatPrice.innerHTML =
+      `<td>დღგ:</td>
     <td>
       <div class="text-and-copy">
         <span id="VAT-agreements">
@@ -508,8 +584,8 @@ function mySubmitAgr() {
       </div>
     </td>`
   } else document.getElementById("agreementsVAT").innerHTML = "";
-  
-  finalPrice.innerHTML = 
+
+  finalPrice.innerHTML =
     `<td>სულ:</td>
     <td>
       <div class="text-and-copy" >
@@ -519,7 +595,7 @@ function mySubmitAgr() {
         <img id="copyAgreementsFullBttn" class="copy-icon" src="copy1.png" title="Copy">
       </div>
     </td>`
-  ; 
+    ;
 
 
   renderFullTextAgr();
@@ -529,13 +605,13 @@ function mySubmitAgr() {
 function renderFullTextAgr() {
   const fullTextArea = document.getElementById('fullTextAgreements');
   let fullText = "";
-  if (agreementsVAT() > 0 ) {
+  if (agreementsVAT() > 0) {
     fullText = `გადახდილია სანოტარო მომსახურების საზღაური სულ: <b> ${fullPriceAgr()} (${integersToWords(fullPriceAgr())}${decimalsToWords(fullPriceAgr())} ლარი,</b> მათ შორის: ${agreements()} (${integersToWords(agreements())}${decimalsToWords(agreements())} ლარი, თანახმად საქართველოს მთავრობის 2011 წლის 29 დეკემბერის №507 დადგენილების (სანოტარო მოქმედებათა შესრულებისათვის საზღაურისა და საქართველოს ნოტარიუსთა პალატისთვის დადგენილი საფასურის ოდენობების, მათი გადახდევინების წესისა და მომსახურების ვადების დამტკიცების შესახებ) 23-ე მუხლისა, 5 (ხუთი) ლარი - ელექტრონულ სანოტარო რეესტრში სანოტარო მოქმედების რეგისტრაციის საფასური, თანახმად ზემოხსენებული დადგენილების 39-ე მუხლისა და დღგ - ${agreementsVAT()} (${integersToWords(agreementsVAT())}${decimalsToWords(agreementsVAT())} ლარი, თანახმად საქართველოს საგადასახადო კოდექსის 166-ე მუხლისა.`
   } else {
     fullText = `გადახდილია სანოტარო მომსახურების საზღაური სულ:<b> ${fullPriceAgr()} (${integersToWords(fullPriceAgr())}${decimalsToWords(fullPriceAgr())} ლარი,</b> მათ შორის: ${agreements()} (${integersToWords(agreements())}${decimalsToWords(agreements())} ლარი, თანახმად საქართველოს მთავრობის 2011 წლის 29 დეკემბერის №507 დადგენილების (სანოტარო მოქმედებათა შესრულებისათვის საზღაურისა და საქართველოს ნოტარიუსთა პალატისთვის დადგენილი საფასურის ოდენობების, მათი გადახდევინების წესისა და მომსახურების ვადების დამტკიცების შესახებ) 23-ე მუხლისა და 5 (ხუთი) ლარი - ელექტრონულ სანოტარო რეესტრში სანოტარო მოქმედების რეგისტრაციის საფასური, თანახმად ზემოხსენებული დადგენილების 39-ე მუხლისა.`
-  }  
-  
-  fullTextArea.innerHTML = 
+  }
+
+  fullTextArea.innerHTML =
     `<div class = "fullText">
       <span id="copy-full-txt-agreements">${fullText}</span>
       <div class="copy-full-bttn">
@@ -543,14 +619,14 @@ function renderFullTextAgr() {
       </div>
     </div>`;
 
-    eventListenersforCopyingAgr();
+  eventListenersforCopyingAgr();
 }
 
 
 function setupEventListenersAgr() {
   const submitBttn = document.getElementById('submit-agreements');
   const resetBttn = document.getElementById('reset-agreements');
-  
+
   //submitBttn.removeEventListener('click', mySubmitAgr);
   submitBttn.addEventListener('click', mySubmitAgr);
   submitBttn.addEventListener('click', renderFullTextAgr);
@@ -570,10 +646,10 @@ function eventListenersforCopyingAgr() {
   const copyAgreementsVatBttn = document.getElementById('copyAgreementsVatBttn');
   const copyFullTextAgreements = document.getElementById('copyFullTextAgreements');
 
-  copyAgreementsFullBttn.addEventListener('click', () => {copyContent(document.getElementById('full-price-agreements').innerText)});
-  copyAgreementsBttn.addEventListener('click', () => {copyContent(document.getElementById('notary-price-agreements').innerText)}); 
-  copyAgreementsVatBttn?.addEventListener('click', () => {copyContent(document.getElementById('VAT-agreements').innerText)});
-  copyFullTextAgreements.addEventListener('click', () => {copyRich(document.getElementById('copy-full-txt-agreements'))});
+  copyAgreementsFullBttn.addEventListener('click', () => { copyContent(document.getElementById('full-price-agreements').innerText) });
+  copyAgreementsBttn.addEventListener('click', () => { copyContent(document.getElementById('notary-price-agreements').innerText) });
+  copyAgreementsVatBttn?.addEventListener('click', () => { copyContent(document.getElementById('VAT-agreements').innerText) });
+  copyFullTextAgreements.addEventListener('click', () => { copyRich(document.getElementById('copy-full-txt-agreements')) });
 
 }
 
@@ -593,53 +669,70 @@ function resetAgr() {
 // -----Calculation-----სამკვიდრო------
 
 function inheritance() {
-  let amount = Number(document.getElementById("inheritanceAmount").value); 
+  let amount = Number(document.getElementById("inheritanceAmount").value);
   amount = Math.round(amount * 100) / 100;
+  let heirs = Number(document.getElementById("heirs").value);
+  heirs = Math.round(heirs);
 
   if (amount < 0) amount = 0;
- 
+  if (heirs <= 0) heirs = 1;
+
+  amount /= heirs;
+  amount = Math.round(amount * 100) / 100;
   let notaryPrice;
 
   if (amount <= 500) {
-    notaryPrice = (amount * 3)/100;
+    notaryPrice = (amount * 3) / 100;
   } else if (amount <= 1000) {
-    notaryPrice = ((amount - 500) * 25)/1000 + 15;
+    notaryPrice = ((amount - 500) * 25) / 1000 + 15;
   } else if (amount <= 2000) {
-    notaryPrice = ((amount - 1000) * 15)/1000 + (275/10);
+    notaryPrice = ((amount - 1000) * 15) / 1000 + (275 / 10);
   } else if (amount <= 3000) {
-    notaryPrice = ((amount - 2000) * 1)/100 + (425/10);
+    notaryPrice = ((amount - 2000) * 1) / 100 + (425 / 10);
   } else if (amount <= 5000) {
-    notaryPrice = ((amount - 3000) * 5)/1000 + (525/10);
+    notaryPrice = ((amount - 3000) * 5) / 1000 + (525 / 10);
   } else if (amount <= 20000) {
-    notaryPrice = ((amount - 5000) * 4)/1000 + (625/10);
+    notaryPrice = ((amount - 5000) * 4) / 1000 + (625 / 10);
   } else if (amount <= 100000) {
-    notaryPrice = ((amount - 20000) * 3)/1000 + (1225/10);
+    notaryPrice = ((amount - 20000) * 3) / 1000 + (1225 / 10);
   } else if (amount <= 500000) {
-    notaryPrice = ((amount - 100000) * 2)/1000 + (3625/10);
+    notaryPrice = ((amount - 100000) * 2) / 1000 + (3625 / 10);
   } else if (amount <= 1000000) {
-    notaryPrice = ((amount - 500000) * 1)/1000 + (11625/10);
+    notaryPrice = ((amount - 500000) * 1) / 1000 + (11625 / 10);
   } else {
-    notaryPrice = ((amount - 1000000) * 5)/10000 + (16625/10);
+    notaryPrice = ((amount - 1000000) * 5) / 10000 + (16625 / 10);
   }
 
   notaryPrice /= 2;
+
+  const noteTxt = document.getElementById('note');
+
+  if (heirs >= 2) {
+    noteTxt.innerHTML = `<i><b>შენიშვნა:</b> გამოიყენეთ მხოლოდ იმ შემთხვევაში, თუ ეს ${heirs} მემკვიდრე <b><u>თანაბარწილად</u></b> იღებს სამკვიდროს</i><br><br>
+  თითოეული მემკვიდრის კუთვნილი წილის ღირებულებაა <b> ${amount} (${integersToWords(amount)}${decimalsToWords(amount)} ლარი</b><br><br>`
+  } else noteTxt.innerHTML = "";
+
+  notaryPrice = Math.round(notaryPrice * 100) / 100;
+  notaryPrice *= heirs;
   notaryPrice = Math.round(notaryPrice * 100) / 100;
 
 
   return notaryPrice;
 }
- 
+
 
 
 function inheritanceVAT() {
   const vatPrice = Math.round(inheritance() * 18) / 100;
   let checkBox = document.getElementById("vatSelectorInheritance");
 
-  if (checkBox.checked == true) {return vatPrice;} else {return 0}
+  if (checkBox.checked == true) { return vatPrice; } else { return 0 }
 }
 
+
+
 function fullPriceInh() {
-  let x = (inheritanceVAT()*100 + inheritance()*100)/100 + 5;
+  let x = Math.round((inheritanceVAT() * 100 + inheritance() * 100 + 500)) / 100;
 
   return x;
 }
@@ -652,9 +745,9 @@ function fullPriceInh() {
 function mySubmitInh() {
   const notaryPrice = document.getElementById('inheritancePrice');
   const vatPrice = document.getElementById('inheritanceVAT');
-  const finalPrice = document.getElementById('inheritanceFullPrice');  
+  const finalPrice = document.getElementById('inheritanceFullPrice');
 
-  notaryPrice.innerHTML = 
+  notaryPrice.innerHTML =
     `<td>საზღაური:</td>
     <td>
       <div class="text-and-copy">
@@ -664,9 +757,10 @@ function mySubmitInh() {
         <img id="copyInheritanceBttn" class="copy-icon" src="copy1.png" title="Copy">
       </div>
     </td>`;
-  
-  if (inheritanceVAT() > 0) {vatPrice.innerHTML = 
-    `<td>დღგ:</td>
+
+  if (inheritanceVAT() > 0) {
+    vatPrice.innerHTML =
+      `<td>დღგ:</td>
     <td>
       <div class="text-and-copy">
         <span id="VAT-inheritance">
@@ -676,8 +770,8 @@ function mySubmitInh() {
       </div>
     </td>`
   } else document.getElementById("inheritanceVAT").innerHTML = "";
-  
-  finalPrice.innerHTML = 
+
+  finalPrice.innerHTML =
     `<td>სულ:</td>
     <td>
       <div class="text-and-copy" >
@@ -687,7 +781,7 @@ function mySubmitInh() {
         <img id="copyInheritanceFullBttn" class="copy-icon" src="copy1.png" title="Copy">
       </div>
     </td>`
-  ; 
+    ;
 
 
   renderFullTextInh();
@@ -697,13 +791,13 @@ function mySubmitInh() {
 function renderFullTextInh() {
   const fullTextArea = document.getElementById('fullTextInheritance');
   let fullText = "";
-  if (inheritanceVAT() > 0 ) {
+  if (inheritanceVAT() > 0) {
     fullText = `გადახდილია სანოტარო მომსახურების საზღაური სულ: <b> ${fullPriceInh()} (${integersToWords(fullPriceInh())}${decimalsToWords(fullPriceInh())} ლარი,</b> მათ შორის: ${inheritance()} (${integersToWords(inheritance())}${decimalsToWords(inheritance())} ლარი, თანახმად საქართველოს მთავრობის 2011 წლის 29 დეკემბერის №507 დადგენილების (სანოტარო მოქმედებათა შესრულებისათვის საზღაურისა და საქართველოს ნოტარიუსთა პალატისთვის დადგენილი საფასურის ოდენობების, მათი გადახდევინების წესისა და მომსახურების ვადების დამტკიცების შესახებ) მე-18, 23-ე და 29-ე მუხლებისა, 5 (ხუთი) ლარი - ელექტრონულ სანოტარო რეესტრში სანოტარო მოქმედების რეგისტრაციის საფასური, თანახმად ზემოხსენებული დადგენილების 39-ე მუხლისა და დღგ - ${inheritanceVAT()} (${integersToWords(inheritanceVAT())}${decimalsToWords(inheritanceVAT())} ლარი, თანახმად საქართველოს საგადასახადო კოდექსის 166-ე მუხლისა.`
   } else {
     fullText = `გადახდილია სანოტარო მომსახურების საზღაური სულ:<b> ${fullPriceInh()} (${integersToWords(fullPriceInh())}${decimalsToWords(fullPriceInh())} ლარი,</b> მათ შორის: ${inheritance()} (${integersToWords(inheritance())}${decimalsToWords(inheritance())} ლარი, თანახმად საქართველოს მთავრობის 2011 წლის 29 დეკემბერის №507 დადგენილების (სანოტარო მოქმედებათა შესრულებისათვის საზღაურისა და საქართველოს ნოტარიუსთა პალატისთვის დადგენილი საფასურის ოდენობების, მათი გადახდევინების წესისა და მომსახურების ვადების დამტკიცების შესახებ) მე-18, 23-ე და 29-ე მუხლებისა და 5 (ხუთი) ლარი - ელექტრონულ სანოტარო რეესტრში სანოტარო მოქმედების რეგისტრაციის საფასური, თანახმად ზემოხსენებული დადგენილების 39-ე მუხლისა.`
-  }  
-  
-  fullTextArea.innerHTML = 
+  }
+
+  fullTextArea.innerHTML =
     `<div class = "fullText">
       <span id="copy-full-txt-inheritance">${fullText}</span>
       <div class="copy-full-bttn">
@@ -711,14 +805,15 @@ function renderFullTextInh() {
       </div>
     </div>`;
 
-    eventListenersforCopyingInh();
+
+  eventListenersforCopyingInh();
 }
 
 
 function setupEventListenersInh() {
   const submitBttn = document.getElementById('submit-inheritance');
   const resetBttn = document.getElementById('reset-inheritance');
-  
+
   //submitBttn.removeEventListener('click', mySubmitInh);
   submitBttn.addEventListener('click', mySubmitInh);
   submitBttn.addEventListener('click', renderFullTextInh);
@@ -738,10 +833,10 @@ function eventListenersforCopyingInh() {
   const copyInheritanceVatBttn = document.getElementById('copyInheritanceVatBttn');
   const copyFullTextInheritance = document.getElementById('copyFullTextInheritance');
 
-  copyInheritanceFullBttn.addEventListener('click', () => {copyContent(document.getElementById('full-price-inheritance').innerText)});
-  copyInheritanceBttn.addEventListener('click', () => {copyContent(document.getElementById('notary-price-inheritance').innerText)}); 
-  copyInheritanceVatBttn?.addEventListener('click', () => {copyContent(document.getElementById('VAT-inheritance').innerText)});
-  copyFullTextInheritance.addEventListener('click', () => {copyRich(document.getElementById('copy-full-txt-inheritance'))});
+  copyInheritanceFullBttn.addEventListener('click', () => { copyContent(document.getElementById('full-price-inheritance').innerText) });
+  copyInheritanceBttn.addEventListener('click', () => { copyContent(document.getElementById('notary-price-inheritance').innerText) });
+  copyInheritanceVatBttn?.addEventListener('click', () => { copyContent(document.getElementById('VAT-inheritance').innerText) });
+  copyFullTextInheritance.addEventListener('click', () => { copyRich(document.getElementById('copy-full-txt-inheritance')) });
 
 }
 
@@ -752,9 +847,10 @@ function resetInh() {
   document.getElementById("inheritancePrice").innerHTML = "";
   document.getElementById("inheritanceVAT").innerHTML = "";
   document.getElementById('inheritanceFullPrice').innerHTML = "";
-  document.getElementById('fullTextInheritance').innerHTML = "";
+  document.getElementById('fullTextInheritance').innerHTML = ""
+  document.getElementById('note').innerHTML = "";
 }
- 
+
 
 
 

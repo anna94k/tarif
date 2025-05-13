@@ -1,48 +1,75 @@
 <!DOCTYPE html>
 <html lang="ka">
+
 <head>
-  <meta charset="UTF-8">
-  <title>საზღაურები</title>
-  <link rel="stylesheet" href="style.css">
+   <meta charset="UTF-8">
+   <title>საზღაურები</title>
+   <link rel="stylesheet" href="style.css">
+   <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 
 
 <body>
 
+   <!-- 
    <div>დღევანდელი თარიღი: <b><span id="date1"></span></b></div><br>
-   <input type="date" class="date-input">
-   <span id="date2"></span></b></div>
+   -->
 
-   
-   <br><br><div>
-      რიცხვი სიტყვიერად: 
-      <input id="num-to-words" type="number" min="0">
+   <div id="date-numbers">
+      <div>
+         <b>თარიღი: </b><input type="date" class="date-input">
+
+
+         <table class="input-table">
+
+            <tr>
+               <td><span id="date3"></span>
+               </td>
+            </tr>
+            <tr>
+               <td><span id="date2"></span>
+               </td>
+            </tr>
+            <tr>
+               <td><span id="date4"></span>
+               </td>
+            </tr>
+         </table>
+      </div>
+
+
+
+      <div>
+         <b>რიცხვი სიტყვიერად:</b>
+         <input id="num-to-words" type="number" min="0">
+
+
+
+         <table class="input-table">
+
+            <tr>
+               <td><span id="num-to-words-result"></span>
+               </td>
+            </tr>
+            <tr>
+               <td><span id="num-to-words-result2"></span>
+               </td>
+            </tr>
+         </table>
+      </div>
    </div>
 
+   <div id="main-content">
 
-   <table class="input-table">
-      
-      <tr>
-         <td><span id="num-to-words-result"></span>
-         </td>
-      </tr>
-      <tr>
-         <td><span id="num-to-words-result2"></span>
-         </td>
-      </tr>
-   </table>
-
-   <div id="main-content"> 
-      
 
       <!-- ხელმოწერის ნამდვილობის დამოწმება -->
 
       <div class="parts">
-         
+
          <h3>ხელმოწერის ნამდვილობის დამოწმება</h3>
          <form id="signatureForm">
             <table class="input-table">
-               <tr> 
+               <tr>
                   <td><label for="pageNum">რამდენ გვერდიანია დოკუმენტი: </label><br></td>
                   <td><input type="number" min="1" id="pageNum" name="pageNum" placeholder="1" value="1"><br>
                   </td>
@@ -68,7 +95,8 @@
                      <input type="radio" id="projectOther" class="radio-input" name="project">
                      <label for="projectOther">სხვა:</label>
                   </td>
-                  <td><input type="number" min="0" id="projectAmount" name="projectAmount" placeholder="0" disabled="disabled">
+                  <td><input type="number" min="0" id="projectAmount" name="projectAmount" placeholder="0"
+                        disabled="disabled">
                   </td>
                </tr>
                <tr>
@@ -79,9 +107,9 @@
                </tr>
             </table>
          </form>
-         
+
          <div class="bttns">
-            <div><button class="submit-bttn" id="submit">დაანგარიშება</button></div>   
+            <div><button class="submit-bttn" id="submit">დაანგარიშება</button></div>
             <div class="reset-bttn" id="reset">&#8634;</div>
          </div><br>
 
@@ -107,7 +135,7 @@
          <h3>ასლის დამოწმება</h3>
          <form id="copiesForm">
             <table class="input-table">
-               <tr> 
+               <tr>
                   <td><label for="pageNum">რამდენ გვერდიანია დოკუმენტი: </label><br></td>
                   <td><input type="number" min="1" id="pageNumCopy" name="pageNum" value="1"><br>
                   </td>
@@ -136,85 +164,53 @@
                </tr>
             </table>
          </form>
-         
+
          <div class="bttns">
-            <div><button class="submit-bttn" id="submit-copies">დაანგარიშება</button></div>   
+            <div><button class="submit-bttn" id="submit-copies">დაანგარიშება</button></div>
             <div class="reset-bttn" id="reset-copies">&#8634;</div>
          </div><br>
 
          <!-- შედეგები - ასლის -->
-         
-         <table class="result-table">
-            <tr>
-               <td>სულ:</td>
-               <td>
-                  <div class="text-and-copy">
-                     <span id="copyFullPrice"></span><img id="copy-full-copies" class="copy-icon" src="copy1.png" title="Copy">
-                  </div>
-            </td>
-            </tr>
-            <tr>
-               <td>საზღაური:</td>
-               <td>
-                  <div class="text-and-copy">
-                     <span id="copiesPrice"></span><img id="copy-notary-copies" class="copy-icon" src="copy1.png" title="Copy">
-                  </div>
-               </td>
 
-            </tr>
-            <tr>
-               <td>ასლისთვის:</td>
-               <td >
-                  <div class="text-and-copy">
-                     <span id="forCopyingResult"></span><img id="copy-for-copying" class="copy-icon" src="copy1.png" title="Copy">
-                  </div>
-               </td>
-            </tr>
-            <tr>
-               <td>დღგ:</td>
-               <td>
-                  <div class="text-and-copy">
-                     <span id="copiesVAT"></span><img id="copy-VAT-copies" class="copy-icon" src="copy1.png" title="Copy">
-                  </div>
-               </td>
-            </tr>
+         <table class="result-table">
+            <tr id="copiesFullPrice"></tr>
+            <tr id="copiesNotaryPrice"></tr>
+            <tr id="priceForCopying"></tr>
+            <tr id="copiesVATprice"></tr>
          </table>
 
-         <div class = "fullText">
-            <span id="copiesFullText"></span>
-            <div class="copy-full-bttn">
-               <button id="copyFullTextCopies">კოპირება</button>
-            </div>
-         </div>
-         
+
+         <div id="fullTextCopies"></div>
+
 
       </div>
 
-      
+
       <!-- ხელშეკრულებების ღირებულება -->
 
       <div class="parts">
-         
+
          <h3>გარიგებების დამოწმება &#40;23-ე მუხლი&#41;</h3>
          <form id="agreementsForm">
             <table class="input-table">
-               <tr> 
+               <tr>
                   <td><label for="agreements-amount">გარიგების ღირებულება:</label><br></td>
                   <td><input type="number" min="0" id="agreementsAmount" name="agreements-amount" placeholder="0"> ₾<br>
                   </td>
                </tr>
-               
+
                <tr>
                   <td class="vat-label"><label for="vatSelectorAgreements">დღგ:</label>
                   </td>
-                  <td><input type="checkbox" class="checkbox" id="vatSelectorAgreements" name="vatSelectorAgreements" checked>
+                  <td><input type="checkbox" class="checkbox" id="vatSelectorAgreements" name="vatSelectorAgreements"
+                        checked>
                   </td>
                </tr>
             </table>
          </form>
-         
+
          <div class="bttns">
-            <div><button class="submit-bttn" id="submit-agreements">დაანგარიშება</button></div>   
+            <div><button class="submit-bttn" id="submit-agreements">დაანგარიშება</button></div>
             <div class="reset-bttn" id="reset-agreements">&#8634;</div>
          </div><br>
 
@@ -230,33 +226,44 @@
 
       </div>
 
-      
+
       <!-- სამკვიდროს ღირებულება -->
 
       <div class="parts">
-         
+
          <h3>სამკვიდრო მოწმობის გაცემა</h3>
          <form id="inheritanceForm">
             <table class="input-table">
-               <tr> 
+               <tr>
                   <td><label for="inheritance-amount">სამკვიდროს ღირებულება:</label><br></td>
-                  <td><input type="number" min="0" id="inheritanceAmount" name="inheritance-amount" placeholder="0"> ₾<br>
+                  <td><input type="number" min="0" id="inheritanceAmount" name="inheritance-amount" placeholder="0">
+                     ₾<br>
                   </td>
                </tr>
-               
+               <tr>
+                  <td><label for="heirs">მემკვიდრეების რაოდენობა: </label><br>
+                  </td>
+                  <td><input type="number" min="1" id="heirs" name="heirs" placeholder="1" value="1"><br>
+                  </td>
+               </tr>
+
                <tr>
                   <td class="vat-label"><label for="vatSelectorInheritance">დღგ:</label>
                   </td>
-                  <td><input type="checkbox" class="checkbox" id="vatSelectorInheritance" name="vatSelectorInheritance" checked>
+                  <td><input type="checkbox" class="checkbox" id="vatSelectorInheritance" name="vatSelectorInheritance"
+                        checked>
                   </td>
                </tr>
             </table>
          </form>
-         
+
          <div class="bttns">
-            <div><button class="submit-bttn" id="submit-inheritance">დაანგარიშება</button></div>   
+            <div><button class="submit-bttn" id="submit-inheritance">დაანგარიშება</button></div>
             <div class="reset-bttn" id="reset-inheritance">&#8634;</div>
          </div><br>
+
+         <!-- შენიშვნა -->
+         <div id="note"></div>
 
          <!-- შედეგები - სამკვიდროს -->
          <table class="result-table">
@@ -274,8 +281,8 @@
    </div>
 
 
-  <script type="module" src="script.js"></script>
-  <script type="module" src="utils/date.js"></script>
+   <script type="module" src="script.js"></script>
+   <script type="module" src="utils/date.js"></script>
 </body>
 
 </html>
